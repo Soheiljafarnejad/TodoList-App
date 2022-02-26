@@ -1,11 +1,13 @@
 import style from "./Todo.module.css";
-const Todo = ({ todo }) => {
+const Todo = ({ todo, onComplete }) => {
   return (
     <div className={style.todo}>
-      <h4>{todo.text}</h4>
+      <h4 className={`${todo.isComplete && style.completed}`}>{todo.text}</h4>
       <div>
         <button>Edit</button>
-        <button>Complete</button>
+        <button onClick={onComplete}>
+          {todo.isComplete ? "unComplete" : "Complete"}
+        </button>
       </div>
     </div>
   );

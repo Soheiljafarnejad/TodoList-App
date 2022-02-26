@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useTodosAction } from "../Context/TodoContext/TodoContext";
 
-const TodoForm = ({ addTodosHandler }) => {
+const TodoForm = () => {
+  const { addTodosHandler } = useTodosAction();
+
   const [inputValue, setInputValue] = useState("");
+
   const inputHandler = (e) => {
     setInputValue(e.target.value);
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (inputValue === "") {
@@ -14,6 +19,7 @@ const TodoForm = ({ addTodosHandler }) => {
     addTodosHandler(inputValue);
     setInputValue("");
   };
+
   return (
     <div>
       <form onSubmit={submitHandler}>

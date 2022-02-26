@@ -8,5 +8,10 @@
 }
 
 .todo button:not(:last-child) {
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #6c757d;
 }
