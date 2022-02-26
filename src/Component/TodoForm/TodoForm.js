@@ -7,6 +7,10 @@ const TodoForm = ({ addTodosHandler }) => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
+    if (inputValue === "") {
+      alert("add todo !");
+      return;
+    }
     addTodosHandler(inputValue);
     setInputValue("");
   };
