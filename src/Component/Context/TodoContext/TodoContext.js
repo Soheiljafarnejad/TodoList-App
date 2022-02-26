@@ -40,5 +40,11 @@ export const useTodosAction = () => {
     cloneTodo[index] = selectTodo;
     setTodos(cloneTodo);
   };
-  return { addTodosHandler, completedHandler };
+
+  const deleteHandler = (id) => {
+    const deletedTodo = todos.filter((item) => item.id !== id);
+    setTodos(deletedTodo);
+  };
+
+  return { addTodosHandler, completedHandler, deleteHandler };
 };

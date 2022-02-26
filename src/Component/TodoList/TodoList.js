@@ -2,7 +2,8 @@ import { useTodos, useTodosAction } from "../Context/TodoContext/TodoContext";
 import Todo from "../Todo/Todo";
 const TodoList = () => {
   const todos = useTodos();
-  const { completedHandler } = useTodosAction();
+  const { completedHandler, deleteHandler } = useTodosAction();
+
   return (
     <div>
       {todos.map((todo) => {
@@ -11,6 +12,7 @@ const TodoList = () => {
             key={todo.id}
             todo={todo}
             onComplete={() => completedHandler(todo.id)}
+            onDelete={() => deleteHandler(todo.id)}
           />
         );
       })}

@@ -1,5 +1,5 @@
 import style from "./Todo.module.css";
-const Todo = ({ todo, onComplete }) => {
+const Todo = ({ todo, onComplete, onDelete }) => {
   return (
     <div className={style.todo}>
       <h4 className={`${todo.isComplete && style.completed}`}>{todo.text}</h4>
@@ -8,6 +8,7 @@ const Todo = ({ todo, onComplete }) => {
         <button onClick={onComplete}>
           {todo.isComplete ? "unComplete" : "Complete"}
         </button>
+        <button onClick={onDelete}>delete</button>
       </div>
     </div>
   );
