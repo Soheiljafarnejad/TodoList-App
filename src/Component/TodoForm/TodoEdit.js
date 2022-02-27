@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { useTodosAction } from "../Context/TodoContext/TodoContext";
 
-const TodoEdit = ({ edit }) => {
+const TodoEdit = ({ edit, editTodoHandler, deleteHandler }) => {
   const [editValue, setEditValue] = useState(edit.text);
-  const { editTodoHandler, deleteHandler } = useTodosAction();
 
   const editRef = useRef();
 

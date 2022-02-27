@@ -1,9 +1,6 @@
 import { useState } from "react";
-import { useTodosAction } from "../Context/TodoContext/TodoContext";
 
-const TodoForm = () => {
-  const { addTodosHandler } = useTodosAction();
-
+const TodoForm = ({ addTodosHandler }) => {
   const [inputValue, setInputValue] = useState("");
 
   const inputHandler = (e) => {

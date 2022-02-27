@@ -1,15 +1,24 @@
 import { useState } from "react";
-import { useTodos, useTodosAction } from "../Context/TodoContext/TodoContext";
+
 import Todo from "../Todo/Todo";
 import TodoEdit from "../TodoForm/TodoEdit";
-const TodoList = () => {
-  const todos = useTodos();
-  const { completedHandler, deleteHandler } = useTodosAction();
 
+const TodoList = ({
+  todos,
+  completedHandler,
+  deleteHandler,
+  editTodoHandler,
+}) => {
   const [selectedEdit, setSelectedEdit] = useState({ id: null });
 
   if (selectedEdit.id) {
-    return <TodoEdit edit={selectedEdit} />;
+    return (
+      <TodoEdit
+        edit={selectedEdit}
+        editTodoHandler={editTodoHandler}
+        deleteHandler={deleteHandler}
+      />
+    );
   }
 
   return (
