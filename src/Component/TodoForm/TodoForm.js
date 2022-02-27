@@ -23,7 +23,12 @@ const TodoForm = () => {
   return (
     <div>
       <form onSubmit={submitHandler}>
-        <input onChange={inputHandler} type="text" value={inputValue} />
+        <input
+          onChange={inputHandler}
+          type="text"
+          value={inputValue}
+          placeholder="add todo..."
+        />
         <button type="submit">Add</button>
       </form>
     </div>
