@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 0;
+  overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.category {
+  border: none;
+  outline: none;
+  text-align: start;
+  background-color: var(--white);
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  width: 100%;
+  min-width: 250px;
+}
+
+.category:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.border {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--pink);
+  border-radius: 2px;
+}
+
+.borderBlue {
+  border-bottom: 2px solid var(--blue);
+}
+
+.value {
+  color: var(--gray);
+}

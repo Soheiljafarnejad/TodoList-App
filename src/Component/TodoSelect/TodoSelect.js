@@ -1,21 +1,21 @@
 import SelectCom from "../../common/Select/SelectCom";
 
-const TodoNavBar = ({ filterTodoHandler, setCategory, category }) => {
-  const options = [
+const TodoSelect = ({ filterTodoHandler, setOptions }) => {
+  const filterValue = [
     { value: "All", label: "All" },
     { value: "Completed", label: "Completed" },
     { value: "Uncompleted", label: "Uncompleted" },
   ];
 
   const onFilter = (e) => {
-    setCategory(e.value);
+    setOptions(e.value);
     filterTodoHandler(e.value);
   };
   return (
     <>
-      <SelectCom options={options} onChange={onFilter} />
+      <SelectCom options={filterValue} onChange={onFilter} />
     </>
   );
 };
 
-export default TodoNavBar;
+export default TodoSelect;
