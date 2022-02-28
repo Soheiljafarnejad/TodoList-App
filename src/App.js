@@ -1,9 +1,10 @@
 import TodoApp from "./Component/TodoApp";
 import "./App.css";
+import HeaderCom from "./Component/Header/HeaderCom";
 const App = () => {
   return (
     <div className="container">
-      <h1>TodoList-App</h1>
+      <HeaderCom/>
       <TodoApp />
     </div>
   );

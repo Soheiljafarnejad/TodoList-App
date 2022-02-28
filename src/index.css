@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -5,14 +7,55 @@
   box-sizing: border-box;
 }
 
+:root {
+  --body-dark: #3d47af;
+  --body-color: #f4f6fd;
+  --color-navBar: #0a155a;
+  --pink: #d103fc;
+  --pink-dark: #a056c5;
+
+  --color: #adbaeb;
+  --color: #020417;
+  --color: #9d9ab4;
+  --color: #373b5e;
+  --color: #4f74ff;
+  --color: #010319;
+  --color: #48466b;
+  --color: #bbc2d8;
+}
+
 html {
   font-size: 62.5%;
 }
 
-body,button,input {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2.5rem;
+body,
+button,
+input {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
 
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
 
+@media screen and (min-width: 768px) {
+  body,
+  button,
+  input {
+    font-size: 2.5rem;
+  }
+  h1 {
+    font-size: 5rem;
+  }
+  h2 {
+    font-size: 5rem;
+  }
+}
