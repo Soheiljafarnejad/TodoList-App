@@ -1,0 +1,31 @@
+.input {
+  width: 100vw;
+  min-width: 180px;
+  padding: 0 0.5rem;
+  outline: none;
+  border: none;
+}
+
+.input:focus {
+  border: 2px solid var(--blue);
+  border-right: 0;
+}
+
+.btn {
+  background-color: var(--white);
+  border: 0;
+  outline: 0;
+  padding: 0.5rem;
+}
+
+.btnFocus {
+  border: 2px solid var(--blue);
+  border-left: 0;
+}
+
+.form {
+  display: flex;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  overflow: hidden;
+}

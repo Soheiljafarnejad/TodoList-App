@@ -1,8 +1,8 @@
 import Select from "react-select";
-
+import style from "./SelectCom.module.css"
 const SelectCom = ({ title, options, onChange, value }) => {
   return (
-    <div>
+    <div className={style.select}>
       <span>{title}</span>
       <Select options={options} onChange={onChange} value={value} />
     </div>

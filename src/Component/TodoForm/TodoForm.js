@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import style from "./TodoForm.module.css";
 
 const TodoForm = ({ addTodosHandler }) => {
   const [inputValue, setInputValue] = useState("");
-
+  const [focus, setFocus] = useState(false);
   const inputHandler = (e) => {
     setInputValue(e.target.value);
   };
@@ -19,14 +20,22 @@ const TodoForm = ({ addTodosHandler }) => {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className={style.form}>
         <input
+          className={style.input}
           onChange={inputHandler}
           type="text"
           value={inputValue}
           placeholder="add todo..."
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
         />
-        <button type="submit">Add</button>
+        <button
+          className={`${style.btn} ${focus && style.btnFocus}`}
+          type="submit"
+        >
+          Add
+        </button>
       </form>
     </div>
   );

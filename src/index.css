@@ -19,7 +19,7 @@
   --color: #020417;
   --gray: #9d9ab4;
   --color: #373b5e;
-  --blue: #4f74ff;
+  --blue: #2684FF;
   --color: #010319;
   --color: #48466b;
   --color: #bbc2d8;
@@ -35,6 +35,10 @@ input {
   font-family: "Quicksand", sans-serif;
   font-size: 1.8rem;
   font-weight: 500;
+}
+
+button{
+  cursor: pointer;
 }
 
 h1 {

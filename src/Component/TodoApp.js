@@ -70,15 +70,12 @@ const TodoApp = () => {
   return (
     <div>
       <TodoCategory />
-
+      <TodoForm addTodosHandler={addTodosHandler} />
       <TodoSelect
         filterTodoHandler={filterTodoHandler}
         options={options}
         setOptions={setOptions}
       />
-
-      <TodoForm addTodosHandler={addTodosHandler} />
-
       <TodoList
         todos={filtered}
         completedHandler={completedHandler}
