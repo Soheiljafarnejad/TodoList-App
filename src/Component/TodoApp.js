@@ -1,5 +1,6 @@
 import TodoForm from "./TodoForm/TodoForm";
 import TodoList from "./TodoList/TodoList";
+import TodoSelect from "./TodoSelect/TodoSelect";
 
 import { useState, useEffect } from "react";
 import TodoCategory from "./TodoCategory/TodoCategory";
@@ -70,15 +71,16 @@ const TodoApp = () => {
     <div>
       <TodoCategory />
       <TodoForm addTodosHandler={addTodosHandler} />
-
+      <TodoSelect
+        filterTodoHandler={filterTodoHandler}
+        setStatus={setStatus}
+        status={status}
+      />
       <TodoList
         todos={filtered}
         completedHandler={completedHandler}
         deleteHandler={deleteHandler}
         editTodoHandler={editTodoHandler}
-        filterTodoHandler={filterTodoHandler}
-        status={status}
-        setStatus={setStatus}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import SelectCom from "../../common/Select/SelectCom";
 
-const TodoSelect = ({ filterTodoHandler, setOptions }) => {
+const TodoSelect = ({ filterTodoHandler, setStatus,status }) => {
   const filterValue = [
     { value: "All", label: "All" },
     { value: "Completed", label: "Completed" },
@@ -8,12 +8,12 @@ const TodoSelect = ({ filterTodoHandler, setOptions }) => {
   ];
 
   const onFilter = (e) => {
-    setOptions(e.value);
+    setStatus(e.value);
     filterTodoHandler(e.value);
   };
   return (
     <>
-      <SelectCom options={filterValue} onChange={onFilter} />
+      <SelectCom options={filterValue} onChange={onFilter}   />
     </>
   );
 };

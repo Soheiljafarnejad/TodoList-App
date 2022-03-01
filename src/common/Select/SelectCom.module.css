@@ -1,4 +1,6 @@
 .select{
     width: 30vw;
     min-width: 150px;
+    margin-left: auto;
+    font-size: 2rem;
 }
