@@ -4,7 +4,7 @@ const SelectCom = ({ title, options, onChange, value }) => {
   return (
     <div className={style.select}>
       <span>{title}</span>
-      <Select options={options} onChange={onChange} value={value} />
+      <Select className={style.selected} options={options} onChange={onChange} value={value} />
     </div>
   );
 };

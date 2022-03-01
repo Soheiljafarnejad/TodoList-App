@@ -27,16 +27,29 @@
   --color: #bbc2d8;
 }
 
+.container {
+  width: 95%;
+  margin: 2rem auto;
+}
+
 html {
   font-size: 62.5%;
 }
 
-body,
+body {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  background-color: var(--body-color);
+}
+
 button,
 input {
   font-family: "Quicksand", sans-serif;
   font-size: 1.8rem;
   font-weight: 500;
+  outline: 0;
+  border: none;
 }
 
 button {

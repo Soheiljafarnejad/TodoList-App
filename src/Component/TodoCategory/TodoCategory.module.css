@@ -1,19 +1,15 @@
-section{
-  margin: 2rem 0;
-}
-
-.container {
+.category {
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow-y: auto;
 }
 
-.container::-webkit-scrollbar {
+.category::-webkit-scrollbar {
   display: none;
 }
 
-.category {
+.categoryItem {
   border: none;
   outline: none;
   text-align: start;
@@ -24,7 +20,7 @@ section{
   min-width: 250px;
 }
 
-.category:not(:last-child) {
+.categoryItem:not(:last-child) {
   margin-right: 1rem;
 }
 

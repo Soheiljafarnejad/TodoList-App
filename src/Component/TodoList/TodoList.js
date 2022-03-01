@@ -1,15 +1,13 @@
 import { useState } from "react";
+import { useTodoList, useTodosAction } from "../Context/TodoContext";
 
 import Todo from "../Todo/Todo";
 import TodoEdit from "../TodoForm/TodoEdit";
-import TodoForm from "../TodoForm/TodoForm";
 
-const TodoList = ({
-  todos,
-  completedHandler,
-  deleteHandler,
-  editTodoHandler,
-}) => {
+const TodoList = () => {
+  const todos = useTodoList();
+  const { completedHandler, deleteHandler, editTodoHandler } = useTodosAction();
+
   const [selectedEdit, setSelectedEdit] = useState({ id: null });
 
   if (selectedEdit.id) {
@@ -22,10 +20,14 @@ const TodoList = ({
     );
   }
   if (todos.length === 0) {
-    return <h2>There is nothing to do !</h2>;
+    return (
+      <section className="container">
+        <h2>There is nothing to do !</h2>
+      </section>
+    );
   }
   return (
-    <section>
+    <section className="container">
       <h2>Today's Tasks</h2>
       {todos.map((todo) => {
         return (

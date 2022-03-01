@@ -26,7 +26,7 @@ const TodoEdit = ({ edit, editTodoHandler, deleteHandler }) => {
   };
 
   return (
-    <section>
+    <section className="container">
       <h2>Edit</h2>
       <form onSubmit={editValueHandler}>
         <input onChange={inputHandler} value={editValue} ref={editRef} />

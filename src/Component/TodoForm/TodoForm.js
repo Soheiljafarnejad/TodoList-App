@@ -1,7 +1,9 @@
 import { useState } from "react";
 import style from "./TodoForm.module.css";
+import { useTodosAction } from "../Context/TodoContext";
 
-const TodoForm = ({ addTodosHandler }) => {
+const TodoForm = () => {
+  const { addTodosHandler } = useTodosAction();
   const [inputValue, setInputValue] = useState("");
   const [focus, setFocus] = useState(false);
   const inputHandler = (e) => {
@@ -19,7 +21,7 @@ const TodoForm = ({ addTodosHandler }) => {
   };
 
   return (
-    <section>
+    <section className="container">
       <h2>Do you add anything?</h2>
       <form onSubmit={submitHandler} className={style.form}>
         <input

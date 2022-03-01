@@ -1,6 +1,24 @@
-.select{
-    width: 30vw;
-    min-width: 150px;
-    margin-left: auto;
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.selected {
+  width: 30%;
+  min-width: 170px;
+}
+
+.select span {
+  margin-right: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .select {
+    justify-content: flex-end;
+    width: 100%;
     font-size: 2rem;
+  }
 }

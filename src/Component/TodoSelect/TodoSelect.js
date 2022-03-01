@@ -1,6 +1,9 @@
 import SelectCom from "../../common/Select/SelectCom";
+import { useStatusAction, useTodosAction } from "../Context/TodoContext";
 
-const TodoSelect = ({ filterTodoHandler, setStatus,status }) => {
+const TodoSelect = () => {
+  const { filterTodoHandler } = useTodosAction();
+  const setStatus = useStatusAction();
   const filterValue = [
     { value: "All", label: "All" },
     { value: "Completed", label: "Completed" },
@@ -12,9 +15,9 @@ const TodoSelect = ({ filterTodoHandler, setStatus,status }) => {
     filterTodoHandler(e.value);
   };
   return (
-    <>
-      <SelectCom options={filterValue} onChange={onFilter}   />
-    </>
+    <section className="container">
+      <SelectCom title="sort by status:" options={filterValue} onChange={onFilter} />
+    </section>
   );
 };
 
