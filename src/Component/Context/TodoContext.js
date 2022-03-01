@@ -3,30 +3,20 @@ import { createContext, useContext, useState } from "react";
 const TodoContainerContext = createContext();
 const TodoContainerContextDispatcher = createContext();
 
-const TodoListContainerContext = createContext();
-const TodoListContainerContextDispatcher = createContext();
-
-const StatusContainerContext = createContext();
-const StatusContainerContextDispatcher = createContext();
-
 const TodoContext = ({ children }) => {
-    
   const [todos, setTodos] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+  const [todoList, setTodoList] = useState([]);
   const [status, setStatus] = useState("All");
+  const [category, setCategory] = useState();
 
   return (
-    <TodoContainerContext.Provider value={todos}>
-      <TodoContainerContextDispatcher.Provider value={setTodos}>
-        <TodoListContainerContext.Provider value={filtered}>
-          <TodoListContainerContextDispatcher.Provider value={setFiltered}>
-            <StatusContainerContext.Provider value={status}>
-              <StatusContainerContextDispatcher.Provider value={setStatus}>
-                {children}
-              </StatusContainerContextDispatcher.Provider>
-            </StatusContainerContext.Provider>
-          </TodoListContainerContextDispatcher.Provider>
-        </TodoListContainerContext.Provider>
+    <TodoContainerContext.Provider
+      value={{ todos, todoList, status, category }}
+    >
+      <TodoContainerContextDispatcher.Provider
+        value={{ setTodos, setTodoList, setStatus, setCategory }}
+      >
+        {children}
       </TodoContainerContextDispatcher.Provider>
     </TodoContainerContext.Provider>
   );
@@ -34,24 +24,25 @@ const TodoContext = ({ children }) => {
 
 export default TodoContext;
 
-export const useStatus = () => useContext(StatusContainerContext);
-export const useStatusAction = () => useContext(StatusContainerContextDispatcher);
-
-export const useTodoList = () => useContext(TodoListContainerContext);
-export const useTodoListAction = () => useContext(TodoListContainerContextDispatcher);
-
 export const useTodos = () => useContext(TodoContainerContext);
 export const useTodosAction = () => {
-  const todos = useTodos();
-  const setTodos = useContext(TodoContainerContextDispatcher);
-  const setFiltered = useTodoListAction();
+  const { todos, category } = useTodos();
+  const { setTodos, setTodoList, setStatus, setCategory } = useContext(
+    TodoContainerContextDispatcher
+  );
   const addTodosHandler = (value) => {
+    if (!category) {
+      alert("add category");
+      return setTodos(todos);
+    }
     const newTodo = {
       text: value,
+      category: category,
       id: Math.floor(Math.random() * 100000),
       isComplete: false,
     };
     setTodos([...todos, newTodo]);
+    setCategory(null);
   };
 
   const completedHandler = (id) => {
@@ -82,25 +73,36 @@ export const useTodosAction = () => {
   const filterTodoHandler = (value) => {
     switch (value) {
       case "All": {
-        return setFiltered(todos);
+        return setTodoList(todos);
       }
       case "Completed": {
         const selectItem = todos.filter((item) => item.isComplete);
-        return setFiltered(selectItem);
+        return setTodoList(selectItem);
       }
       case "Uncompleted": {
         const selectItem = todos.filter((item) => !item.isComplete);
-        return setFiltered(selectItem);
+        return setTodoList(selectItem);
       }
       default:
-        return setFiltered(todos);
+        return setTodoList(todos);
     }
   };
+
+  const updateTodoHandler = (value) => {
+    setTodoList(value);
+  };
+
+  const addCategoryHandler = (e) => {
+    setCategory(e.target.value);
+  };
+
   return {
     addTodosHandler,
     completedHandler,
     deleteHandler,
     editTodoHandler,
     filterTodoHandler,
+    addCategoryHandler,
+    updateTodoHandler,
   };
 };
