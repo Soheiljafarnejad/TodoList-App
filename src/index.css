@@ -13,13 +13,13 @@
   --color-navBar: #0a155a;
   --pink: #d103fc;
   --pink-dark: #a056c5;
-  --white:#fff;
+  --white: #fff;
 
   --color: #adbaeb;
   --color: #020417;
-  --gray: #9d9ab4;
+  --gray: #9ca3af;
   --color: #373b5e;
-  --blue: #2684FF;
+  --blue: #2684ff;
   --color: #010319;
   --color: #48466b;
   --color: #bbc2d8;
@@ -37,7 +37,7 @@ input {
   font-weight: 500;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
@@ -47,8 +47,10 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  color: var(--gray);
   font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -61,6 +63,6 @@ h2 {
     font-size: 5rem;
   }
   h2 {
-    font-size: 5rem;
+    font-size: 3rem;
   }
 }

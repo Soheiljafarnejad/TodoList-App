@@ -2,12 +2,16 @@ import { useState } from "react";
 
 import Todo from "../Todo/Todo";
 import TodoEdit from "../TodoForm/TodoEdit";
+import TodoSelect from "../TodoSelect/TodoSelect";
 
 const TodoList = ({
   todos,
   completedHandler,
   deleteHandler,
   editTodoHandler,
+  filterTodoHandler,
+  setStatus,
+  status,
 }) => {
   const [selectedEdit, setSelectedEdit] = useState({ id: null });
 
@@ -22,7 +26,13 @@ const TodoList = ({
   }
 
   return (
-    <div>
+    <section>
+      <h2>Today's Tasks</h2>
+      <TodoSelect
+        filterTodoHandler={filterTodoHandler}
+        status={status}
+        setStatus={setStatus}
+      />
       {todos.map((todo) => {
         return (
           <Todo
@@ -34,7 +44,7 @@ const TodoList = ({
           />
         );
       })}
-    </div>
+    </section>
   );
 };
 

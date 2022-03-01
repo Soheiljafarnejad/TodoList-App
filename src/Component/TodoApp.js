@@ -1,19 +1,18 @@
 import TodoForm from "./TodoForm/TodoForm";
 import TodoList from "./TodoList/TodoList";
-import TodoSelect from "./TodoSelect/TodoSelect";
 
 import { useState, useEffect } from "react";
-import TodoCategory from "./TodoCtegory/TodoCategory";
+import TodoCategory from "./TodoCategory/TodoCategory";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [options, setOptions] = useState("All");
+  const [status, setStatus] = useState("All");
 
   useEffect(() => {
     setFiltered(todos);
-    filterTodoHandler(options);
-  }, [todos, options]);
+    filterTodoHandler(status);
+  }, [todos, status]);
 
   const addTodosHandler = (value) => {
     const newTodo = {
@@ -71,16 +70,15 @@ const TodoApp = () => {
     <div>
       <TodoCategory />
       <TodoForm addTodosHandler={addTodosHandler} />
-      <TodoSelect
-        filterTodoHandler={filterTodoHandler}
-        options={options}
-        setOptions={setOptions}
-      />
+
       <TodoList
         todos={filtered}
         completedHandler={completedHandler}
         deleteHandler={deleteHandler}
         editTodoHandler={editTodoHandler}
+        filterTodoHandler={filterTodoHandler}
+        status={status}
+        setStatus={setStatus}
       />
     </div>
   );

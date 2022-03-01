@@ -6,7 +6,10 @@ const TodoCategory = () => {
   };
 
   return (
-    <section className={style.container}>
+    <section >
+      <h2>Categories</h2>
+      <div className={style.container}>
+
       <button
         className={style.category}
         value="Work"
@@ -39,6 +42,7 @@ const TodoCategory = () => {
         <span className={style.value}>tasks 40</span>
         <h3 className={`${style.border} ${style.borderBlue}`}>business</h3>
       </button>
+      </div>
     </section>
   );
 };

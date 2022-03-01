@@ -6,7 +6,7 @@ import style from"./HeaderCom.module.css"
 
 const HeaderCom = () => {
   return (
-    <div className={style.header}>
+    <header className={style.header}>
       <div className={style.icons}>
       <BiMenu />
       <div>
@@ -14,8 +14,8 @@ const HeaderCom = () => {
       <BiBell />
       </div>
       </div>
-      <h2>What's up joy!</h2>
-    </div>
+      <h1>What's up joy!</h1>
+    </header>
   );
 };
 

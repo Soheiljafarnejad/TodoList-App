@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import style from "./TodoForm.module.css";
 
 const TodoForm = ({ addTodosHandler }) => {
@@ -19,14 +19,15 @@ const TodoForm = ({ addTodosHandler }) => {
   };
 
   return (
-    <div>
+    <section>
+      <h2>Do you add anything?</h2>
       <form onSubmit={submitHandler} className={style.form}>
         <input
           className={style.input}
           onChange={inputHandler}
           type="text"
           value={inputValue}
-          placeholder="add todo..."
+          placeholder="add task..."
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
         />
@@ -37,7 +38,7 @@ const TodoForm = ({ addTodosHandler }) => {
           Add
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

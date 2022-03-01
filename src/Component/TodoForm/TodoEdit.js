@@ -26,12 +26,12 @@ const TodoEdit = ({ edit, editTodoHandler, deleteHandler }) => {
   };
 
   return (
-    <div>
+    <section>
       <form onSubmit={editValueHandler}>
         <input onChange={inputHandler} value={editValue} ref={editRef} />
         <button type="submit">updated</button>
       </form>
-    </div>
+    </section>
   );
 };
 
