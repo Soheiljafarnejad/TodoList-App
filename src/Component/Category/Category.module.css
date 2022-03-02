@@ -10,6 +10,7 @@
   border-radius: 10px;
   width: 100%;
   min-width: 250px;
+  max-width: 250px;
   height: 120px;
 }
 

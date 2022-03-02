@@ -6,10 +6,6 @@ const CategoryContainerContextDispatcher = createContext();
 const CategoryContext = ({ children }) => {
   const [category, setCategory] = useState([
     { title: "All", value: 0, color: "blue", id: 0 },
-    { title: "Work", value: 0, color: "pink", id: 1 },
-    { title: "School", value: 0, color: "blue", id: 2 },
-    { title: "Personal", value: 0, color: "pink", id: 3 },
-    { title: "Business", value: 0, color: "blue", id: 4 },
   ]);
   return (
     <CategoryContainerContext.Provider value={category}>
@@ -26,4 +22,18 @@ export const useCategory = () => useContext(CategoryContainerContext);
 export const useCategoryAction = () => {
   const category = useCategory();
   const setCategory = useContext(CategoryContainerContextDispatcher);
+
+  const addCategoryHandler = (title) => {
+    const length = category.length;
+    const color = length % 2 === 0 ? "blue" : "pink";
+    const newCategory = {
+      title: title,
+      value: 0,
+      color: color,
+      id: Math.floor(Math.random() * 1000),
+    };
+    setCategory([...category, newCategory]);
+  };
+
+  return { addCategoryHandler };
 };
