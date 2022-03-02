@@ -1,12 +1,13 @@
 import TodoForm from "./TodoForm/TodoForm";
 import TodoList from "./TodoList/TodoList";
 import TodoSelect from "./TodoSelect/TodoSelect";
-import TodoCategory from "./TodoCategory/TodoCategory";
 import { useEffect } from "react";
 import { useTodos, useTodosAction } from "./Context/TodoContext";
+import CategoryList from "./CategoryList/CategoryList";
+import CategoryContext from "./Context/CategoryContext";
 
 const TodoApp = () => {
-  const { filterTodoHandler,updateTodoHandler  } = useTodosAction();
+  const { filterTodoHandler, updateTodoHandler } = useTodosAction();
   const { todos, status } = useTodos();
 
   useEffect(() => {
@@ -16,7 +17,9 @@ const TodoApp = () => {
 
   return (
     <>
-      <TodoCategory />
+      <CategoryContext>
+        <CategoryList />
+      </CategoryContext>
       <TodoForm />
       <TodoSelect />
       <TodoList />

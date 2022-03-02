@@ -1,0 +1,11 @@
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.category::-webkit-scrollbar {
+  display: none;
+}

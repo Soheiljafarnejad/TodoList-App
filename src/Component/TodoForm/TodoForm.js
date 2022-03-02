@@ -25,7 +25,6 @@ const TodoForm = () => {
       <h2>Do you add anything?</h2>
       <form onSubmit={submitHandler} className={style.form}>
         <input
-          className={style.input}
           onChange={inputHandler}
           type="text"
           value={inputValue}

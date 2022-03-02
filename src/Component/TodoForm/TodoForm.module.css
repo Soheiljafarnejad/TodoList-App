@@ -1,31 +1,21 @@
-.input {
-  width: 100vw;
-  min-width: 180px;
-  padding: 0 0.5rem;
-  outline: none;
-  border: none;
-}
-
-.input:focus {
-  border: 2px solid var(--blue);
-  border-right: 0;
-}
-
 .btn {
-  background-color: var(--white);
-  border: 0;
-  outline: 0;
+  border: 1px solid var(--gray);
+  border-left: 0;
+border-radius: 0px 5px 5px 0px;
   padding: 0.5rem;
+  box-sizing: border-box;
 }
 
 .btnFocus {
-  border: 2px solid var(--blue);
+  border: 1px solid var(--blue);
   border-left: 0;
 }
 
 .form {
   display: flex;
-  border: 1px solid var(--gray);
-  border-radius: 5px;
   overflow: hidden;
+}
+
+.form input{
+  border-radius: 5px 0px 0px 5px;
 }

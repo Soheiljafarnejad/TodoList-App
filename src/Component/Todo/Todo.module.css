@@ -1,5 +1,4 @@
 .todo {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,6 +10,10 @@
 
 .todo button:not(:last-child) {
   margin-right: 1rem;
+}
+
+.description {
+  position: relative;
 }
 
 .title {
@@ -30,10 +33,19 @@
   content: "";
   width: 18px;
   height: 18px;
-  box-shadow: 0 0 0 2px var(--pink);
   border-radius: 50%;
   text-decoration: none;
-  margin-left: 6px;
+}
+
+.category {
+  color: var(--gray);
+}
+
+.btn {
+  background-color: var(--white);
+  border: 0;
+  outline: 0;
+  padding: 0.5rem;
 }
 
 .completed {
@@ -45,16 +57,4 @@
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
-}
-
-.completed::before{
-  background-color: var(--pink);
-  border: 2px solid white;
-}
-
-.btn {
-  background-color: var(--white);
-  border: 0;
-  outline: 0;
-  padding: 0.5rem;
 }

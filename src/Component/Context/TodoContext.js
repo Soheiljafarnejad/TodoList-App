@@ -7,14 +7,14 @@ const TodoContext = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const [todoList, setTodoList] = useState([]);
   const [status, setStatus] = useState("All");
-  const [category, setCategory] = useState();
+  const [sortCategory, setSortCategory] = useState({});
 
   return (
     <TodoContainerContext.Provider
-      value={{ todos, todoList, status, category }}
+      value={{ todos, todoList, status, sortCategory }}
     >
       <TodoContainerContextDispatcher.Provider
-        value={{ setTodos, setTodoList, setStatus, setCategory }}
+        value={{ setTodos, setTodoList, setStatus, setSortCategory }}
       >
         {children}
       </TodoContainerContextDispatcher.Provider>
@@ -26,23 +26,23 @@ export default TodoContext;
 
 export const useTodos = () => useContext(TodoContainerContext);
 export const useTodosAction = () => {
-  const { todos, category } = useTodos();
-  const { setTodos, setTodoList, setStatus, setCategory } = useContext(
-    TodoContainerContextDispatcher
-  );
+  const { todos, sortCategory } = useTodos();
+  const { setTodos, setTodoList, setStatus, setCategory, setSortCategory } =
+    useContext(TodoContainerContextDispatcher);
   const addTodosHandler = (value) => {
-    if (!category) {
+    if (!sortCategory.title || sortCategory.title === "All") {
       alert("add category");
-      return setTodos(todos);
+      return;
     }
     const newTodo = {
       text: value,
-      category: category,
+      category: sortCategory.title,
+      color: sortCategory.color,
       id: Math.floor(Math.random() * 100000),
       isComplete: false,
     };
     setTodos([...todos, newTodo]);
-    setCategory(null);
+    setSortCategory({});
   };
 
   const completedHandler = (id) => {
@@ -92,8 +92,8 @@ export const useTodosAction = () => {
     setTodoList(value);
   };
 
-  const addCategoryHandler = (e) => {
-    setCategory(e.target.value);
+  const addCategoryHandler = (title, color) => {
+    setSortCategory({ title: title, color: color });
   };
 
   return {

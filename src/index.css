@@ -48,12 +48,25 @@ input {
   font-family: "Quicksand", sans-serif;
   font-size: 1.8rem;
   font-weight: 500;
-  outline: 0;
+  outline: none;
   border: none;
+  border-radius: 5px;
 }
 
 button {
   cursor: pointer;
+}
+
+input {
+  border: 1px solid var(--gray);
+  width: 100%;
+  min-width: 180px;
+  padding: 0.5rem;
+}
+
+input:focus {
+  border: 1px solid var(--blue);
+  box-sizing: border-box;
 }
 
 h1 {
