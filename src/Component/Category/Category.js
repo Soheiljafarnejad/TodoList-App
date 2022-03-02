@@ -1,13 +1,14 @@
 import { useTodosAction } from "../Context/TodoContext";
 import style from "./Category.module.css";
+import { BiTrashAlt } from "react-icons/bi";
 
-const Category = ({ title, value, color }) => {
-  const { addCategoryHandler } = useTodosAction();
+const Category = ({ title, value, color, id, onDelete }) => {
+  const { filterCategoryHandler } = useTodosAction();
   const categoryValue = (e) => {
     if (e.target.value) {
       const value = e.target.value.split(",");
       const [title, color] = value;
-      addCategoryHandler(title, color);
+      filterCategoryHandler({title, color});
     }
   };
   return (
@@ -16,7 +17,10 @@ const Category = ({ title, value, color }) => {
       value={[title, color]}
       onClick={(e) => categoryValue(e, "value")}
     >
-      <span className={style.value}>tasks {value}</span>
+      <div className={style.discretion}>
+        <span className={style.value}>tasks {value}</span>
+        {id !== 0 && <BiTrashAlt onClick={onDelete} className={style.trash} />}
+      </div>
       <h3 className={`${style.title} ${color}`}>{title}</h3>
     </button>
   );

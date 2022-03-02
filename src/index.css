@@ -13,15 +13,16 @@
   --body-dark: #3d47af;
   --body-color: #f4f6fd;
   --color-navBar: #0a155a;
-  --pink: #d103fc;
   --pink-dark: #a056c5;
+  --pink: #d103fc;
+  --blue: #2684ff;
   --white: #fff;
+  --gray: #9ca3af;
+  --gray-primary: #efefef;
 
   --color: #adbaeb;
   --color: #020417;
-  --gray: #9ca3af;
   --color: #373b5e;
-  --blue: #2684ff;
   --color: #010319;
   --color: #48466b;
   --color: #bbc2d8;
@@ -55,6 +56,7 @@ input {
 
 button {
   cursor: pointer;
+  background-color: var(--gray-primary);
 }
 
 input {

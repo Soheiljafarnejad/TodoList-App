@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useCategoryAction } from "../Context/CategoryContext";
+import { useTodosAction } from "../Context/TodoContext";
 import style from "./Category.module.css";
 const CategoryForm = () => {
-  const { addCategoryHandler } = useCategoryAction();
+  const { addCategoryHandler } = useTodosAction();
   const [value, setValue] = useState("");
   const valueHandler = (e) => {
     setValue(e.target.value);

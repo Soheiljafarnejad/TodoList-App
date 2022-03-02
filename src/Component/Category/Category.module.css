@@ -40,3 +40,18 @@
   margin-bottom: 1rem;
   padding: 0.25rem 0;
 }
+
+.discretion {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trash {
+  box-sizing: content-box;
+  background-color: var(--gray-primary);
+  padding: 0.5rem;
+  border-radius: 50%;
+  font-size: 2rem;
+}

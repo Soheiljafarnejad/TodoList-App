@@ -4,22 +4,39 @@ import TodoSelect from "./TodoSelect/TodoSelect";
 import { useEffect } from "react";
 import { useTodos, useTodosAction } from "./Context/TodoContext";
 import CategoryList from "./CategoryList/CategoryList";
-import CategoryContext from "./Context/CategoryContext";
 
 const TodoApp = () => {
-  const { filterTodoHandler, updateTodoHandler } = useTodosAction();
-  const { todos, status } = useTodos();
+  const { todos, status, statusCategory, category } = useTodos();
+
+  const {
+    filterCategoryHandler,
+    filterStatusHandler,
+    setTodoList,
+    setTodos,
+    setCategory,
+  } = useTodosAction();
+
+  //re render when updated
+  useEffect(() => {
+    setTodoList(todos);
+    filterCategoryHandler(statusCategory);
+    filterStatusHandler(status);
+  }, [todos, statusCategory, status]);
+
+  // localStorage
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("category", JSON.stringify(category));
+  }, [todos, category]);
 
   useEffect(() => {
-    updateTodoHandler(todos);
-    filterTodoHandler(status);
-  }, [todos, status]);
+    setTodos(JSON.parse(localStorage.getItem("todos")) || []);
+    setCategory(JSON.parse(localStorage.getItem("category")) || []);
+  }, []);
 
   return (
     <>
-      <CategoryContext>
-        <CategoryList />
-      </CategoryContext>
+      <CategoryList />
       <TodoForm />
       <TodoSelect />
       <TodoList />

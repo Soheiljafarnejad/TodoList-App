@@ -7,14 +7,29 @@ const TodoContext = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const [todoList, setTodoList] = useState([]);
   const [status, setStatus] = useState("All");
-  const [sortCategory, setSortCategory] = useState({});
+
+  // category state
+  const [statusCategory, setStatusCategory] = useState({
+    title: "All",
+    color: "blue",
+  });
+  const [category, setCategory] = useState([
+    { title: "All", value: 0, color: "blue", id: 0 },
+  ]);
+  // end
 
   return (
     <TodoContainerContext.Provider
-      value={{ todos, todoList, status, sortCategory }}
+      value={{ todos, todoList, status, statusCategory, category }}
     >
       <TodoContainerContextDispatcher.Provider
-        value={{ setTodos, setTodoList, setStatus, setSortCategory }}
+        value={{
+          setTodos,
+          setTodoList,
+          setStatus,
+          setStatusCategory,
+          setCategory,
+        }}
       >
         {children}
       </TodoContainerContextDispatcher.Provider>
@@ -26,23 +41,22 @@ export default TodoContext;
 
 export const useTodos = () => useContext(TodoContainerContext);
 export const useTodosAction = () => {
-  const { todos, sortCategory } = useTodos();
-  const { setTodos, setTodoList, setStatus, setCategory, setSortCategory } =
+  const { todos, todoList, status, statusCategory, category } = useTodos();
+  const { setTodos, setTodoList, setStatus, setStatusCategory, setCategory } =
     useContext(TodoContainerContextDispatcher);
   const addTodosHandler = (value) => {
-    if (!sortCategory.title || sortCategory.title === "All") {
+    if (statusCategory.title === "All") {
       alert("add category");
       return;
     }
     const newTodo = {
       text: value,
-      category: sortCategory.title,
-      color: sortCategory.color,
-      id: Math.floor(Math.random() * 100000),
+      category: statusCategory.title,
+      color: statusCategory.color,
+      id: new Date().getTime(),
       isComplete: false,
     };
     setTodos([...todos, newTodo]);
-    setSortCategory({});
   };
 
   const completedHandler = (id) => {
@@ -70,39 +84,67 @@ export const useTodosAction = () => {
     setTodos(cloneTodo);
   };
 
-  const filterTodoHandler = (value) => {
+  const filterStatusHandler = (value) => {
+    const cloneTodoList = JSON.parse(localStorage.getItem("todoList")) || [];
     switch (value) {
       case "All": {
-        return setTodoList(todos);
+        return setTodoList(cloneTodoList);
       }
       case "Completed": {
-        const selectItem = todos.filter((item) => item.isComplete);
+        const selectItem = cloneTodoList.filter((item) => item.isComplete);
         return setTodoList(selectItem);
       }
       case "Uncompleted": {
-        const selectItem = todos.filter((item) => !item.isComplete);
+        const selectItem = cloneTodoList.filter((item) => !item.isComplete);
         return setTodoList(selectItem);
       }
       default:
-        return setTodoList(todos);
+        return setTodoList(cloneTodoList);
     }
   };
 
-  const updateTodoHandler = (value) => {
-    setTodoList(value);
+  // categoryHandler
+
+  const filterCategoryHandler = (category) => {
+    setStatusCategory(category);
+    if (category.title === "All") {
+      return localStorage.setItem("todoList", JSON.stringify(todos));
+    }
+    const sorted = todos.filter((item) => item.category === category.title);
+    localStorage.setItem("todoList", JSON.stringify(sorted));
   };
 
-  const addCategoryHandler = (title, color) => {
-    setSortCategory({ title: title, color: color });
+  const addCategoryHandler = (title) => {
+    const length = category.length;
+    const color = length % 2 === 0 ? "blue" : "pink";
+    const newCategory = {
+      title: title,
+      value: 0,
+      color: color,
+      id: new Date().getTime(),
+    };
+    setCategory([...category, newCategory]);
   };
+
+  const deleteCategoryHandler = (id) => {
+    const deleted = category.filter((item) => item.id !== id);
+    setCategory(deleted);
+  };
+  // end
 
   return {
     addTodosHandler,
     completedHandler,
     deleteHandler,
     editTodoHandler,
-    filterTodoHandler,
+    filterStatusHandler,
+    filterCategoryHandler,
     addCategoryHandler,
-    updateTodoHandler,
+    deleteCategoryHandler,
+    setTodoList,
+    setStatus,
+    setStatusCategory,
+    setTodos,
+    setCategory,
   };
 };
