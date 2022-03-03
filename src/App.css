@@ -1,29 +1,42 @@
+/* radio todo */
+.radio-blue::before {
+  box-shadow: 0 0 0 2px var(--blue);
+}
+
+.radio-pink::before {
+  box-shadow: 0 0 0 2px var(--pink);
+}
+
+.radio-blue-completed::before {
+  color: red;
+  background-color: var(--blue);
+  border: 2px solid white;
+  opacity: 0.4;
+}
+
+.radio-pink-completed::before {
+  background-color: var(--pink);
+  border: 2px solid white;
+  opacity: 0.4;
+}
+
+/* title category bottom  */
+
 .blue {
-    border-bottom: 2px solid var(--blue);
-  }
-  
-  .pink {
-    border-bottom: 2px solid var(--pink);
-  }
-  
-  .radio-blue::before {
-    box-shadow: 0 0 0 2px var(--blue);
-  }
-  
-  .radio-pink::before {
-    box-shadow: 0 0 0 2px var(--pink);
-  }
-  
-  .radio-blue-completed::before {
-    color: red;
-    background-color: var(--blue);
-    border: 2px solid white;
-    opacity: 0.4;
-  }
-  
-  .radio-pink-completed::before {
-    background-color: var(--pink);
-    border: 2px solid white;
-    opacity: 0.4;
-  }
-  
+  border-bottom: 2px solid var(--blue);
+}
+
+.pink {
+  border-bottom: 2px solid var(--pink);
+}
+
+/* select category */
+
+.selected-blue {
+  border: 2px outset var(--blue);
+}
+
+.selected-pink {
+  border: 2px outset var(--pink);
+}
+

@@ -21,7 +21,7 @@ const CategoryForm = () => {
   return (
     <form
       onSubmit={submitHandler}
-      className={`${style.categoryItem} ${style.categoryForm}`}
+      className={`${style.categoryItem} ${style.categoryForm} ${style.category}`}
     >
       <input
         onChange={valueHandler}

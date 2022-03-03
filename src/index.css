@@ -60,14 +60,14 @@ button {
 }
 
 input {
-  border: 1px solid var(--gray);
+  border: 2px solid var(--gray);
   width: 100%;
   min-width: 180px;
   padding: 0.5rem;
 }
 
 input:focus {
-  border: 1px solid var(--blue);
+  border: 2px solid var(--blue);
   box-sizing: border-box;
 }
 

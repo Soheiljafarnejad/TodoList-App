@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 const TodoContainerContext = createContext();
 const TodoContainerContextDispatcher = createContext();
@@ -14,7 +14,7 @@ const TodoContext = ({ children }) => {
     color: "blue",
   });
   const [category, setCategory] = useState([
-    { title: "All", value: 0, color: "blue", id: 0 },
+    { title: "All", color: "blue", id: 0 },
   ]);
   // end
 
@@ -71,8 +71,10 @@ export const useTodosAction = () => {
   };
 
   const deleteHandler = (id) => {
+    const temp = todos.filter((item) => item.id === id);
     const deletedTodo = todos.filter((item) => item.id !== id);
     setTodos(deletedTodo);
+    valueCategoryHandler(temp[0].category, true);
   };
 
   const editTodoHandler = (id, value) => {
@@ -102,9 +104,7 @@ export const useTodosAction = () => {
         return setTodoList(cloneTodoList);
     }
   };
-
   // categoryHandler
-
   const filterCategoryHandler = (category) => {
     setStatusCategory(category);
     if (category.title === "All") {
@@ -115,10 +115,20 @@ export const useTodosAction = () => {
   };
 
   const addCategoryHandler = (title) => {
+    // Text validation
+    const titleFiltered = title.toLowerCase();
+    const noRepetition = category.find(
+      (item) => item.title.toLowerCase() === titleFiltered
+    );
+    if (noRepetition) {
+      alert("The category is duplicate !");
+      return;
+    }
+    //
     const length = category.length;
     const color = length % 2 === 0 ? "blue" : "pink";
     const newCategory = {
-      title: title,
+      title: titleFiltered,
       value: 0,
       color: color,
       id: new Date().getTime(),
@@ -127,10 +137,26 @@ export const useTodosAction = () => {
   };
 
   const deleteCategoryHandler = (id) => {
+    const temp = category.filter((item) => item.id === id);
     const deleted = category.filter((item) => item.id !== id);
     setCategory(deleted);
+
+    // deleted All todo Category
+    const deletedTodo = todos.filter((item) => item.category !== temp[0].title);
+    setTodos(deletedTodo);
   };
-  // end
+
+  const valueCategoryHandler = (title, isExit) => {
+    let value = todos.filter((item) => item.category === title).length;
+    if (isExit) value--;
+    const index = category.findIndex((item) => item.title === title);
+    const selectCategory = { ...category[index] };
+    selectCategory.value = value;
+    console.log(value);
+    const cloneCategory = [...category];
+    cloneCategory[index] = selectCategory;
+    setCategory(cloneCategory);
+  };
 
   return {
     addTodosHandler,
@@ -141,6 +167,7 @@ export const useTodosAction = () => {
     filterCategoryHandler,
     addCategoryHandler,
     deleteCategoryHandler,
+    valueCategoryHandler,
     setTodoList,
     setStatus,
     setStatusCategory,

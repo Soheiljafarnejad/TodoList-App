@@ -23,7 +23,7 @@ const TodoList = () => {
   if (todoList.length === 0) {
     return (
       <section className="container">
-        <h2>There is nothing to do !</h2>
+        <h2>You have nothing to do !</h2>
       </section>
     );
   }

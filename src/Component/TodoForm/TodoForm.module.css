@@ -1,13 +1,13 @@
 .btn {
-  border: 1px solid var(--gray);
+  border: 2px solid var(--gray);
   border-left: 0;
-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
   padding: 0.5rem;
   box-sizing: border-box;
 }
 
 .btnFocus {
-  border: 1px solid var(--blue);
+  border: 2px solid var(--blue);
   border-left: 0;
 }
 
@@ -16,6 +16,6 @@ border-radius: 0px 5px 5px 0px;
   overflow: hidden;
 }
 
-.form input{
+.form input {
   border-radius: 5px 0px 0px 5px;
 }

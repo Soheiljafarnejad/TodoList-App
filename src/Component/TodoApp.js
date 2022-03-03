@@ -11,6 +11,7 @@ const TodoApp = () => {
   const {
     filterCategoryHandler,
     filterStatusHandler,
+    valueCategoryHandler,
     setTodoList,
     setTodos,
     setCategory,
@@ -21,18 +22,20 @@ const TodoApp = () => {
     setTodoList(todos);
     filterCategoryHandler(statusCategory);
     filterStatusHandler(status);
+    valueCategoryHandler(statusCategory.title);
   }, [todos, statusCategory, status]);
 
   // localStorage
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-    localStorage.setItem("category", JSON.stringify(category));
-  }, [todos, category]);
 
   useEffect(() => {
-    setTodos(JSON.parse(localStorage.getItem("todos")) || []);
-    setCategory(JSON.parse(localStorage.getItem("category")) || []);
+    setCategory(JSON.parse(localStorage.getItem("category")) || category);
+    setTodos(JSON.parse(localStorage.getItem("todos")) || todos);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("category", JSON.stringify(category));
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos, category]);
 
   return (
     <>

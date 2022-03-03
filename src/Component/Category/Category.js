@@ -1,28 +1,43 @@
-import { useTodosAction } from "../Context/TodoContext";
+import { useTodos, useTodosAction } from "../Context/TodoContext";
 import style from "./Category.module.css";
 import { BiTrashAlt } from "react-icons/bi";
 
 const Category = ({ title, value, color, id, onDelete }) => {
+  const { todos, statusCategory } = useTodos();
   const { filterCategoryHandler } = useTodosAction();
-  const categoryValue = (e) => {
-    if (e.target.value) {
-      const value = e.target.value.split(",");
-      const [title, color] = value;
-      filterCategoryHandler({title, color});
-    }
+  const clickHandler = (e) => {
+    const value = {
+      title: title,
+      color: e.target.dataset.color,
+    };
+    filterCategoryHandler(value);
   };
   return (
-    <button
-      className={style.categoryItem}
-      value={[title, color]}
-      onClick={(e) => categoryValue(e, "value")}
-    >
-      <div className={style.discretion}>
-        <span className={style.value}>tasks {value}</span>
-        {id !== 0 && <BiTrashAlt onClick={onDelete} className={style.trash} />}
-      </div>
-      <h3 className={`${style.title} ${color}`}>{title}</h3>
-    </button>
+    <div className={style.category}>
+      <input
+        onClick={clickHandler}
+        type="radio"
+        name="category"
+        id={id}
+        data-color={color}
+      />
+      <label
+        htmlFor={id}
+        className={`${style.categoryItem} ${
+          statusCategory.title === title ? `selected-${color}` : ""
+        }`}
+      >
+        <div className={style.discretion}>
+          <span className={style.value}>
+            tasks {id !== 0 ? value : todos.length}
+          </span>
+          {id !== 0 && (
+            <BiTrashAlt onClick={onDelete} className={style.trash} />
+          )}
+        </div>
+        <h3 className={`${style.title} ${color}`}>{title}</h3>
+      </label>
+    </div>
   );
 };
 
