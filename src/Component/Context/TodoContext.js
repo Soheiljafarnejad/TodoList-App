@@ -44,6 +44,14 @@ export const useTodosAction = () => {
   const { todos, category, categoryList } = useTodos();
   const { setTodos, setTodoList, setStatus, setCategory, setCategoryList } =
     useContext(TodoContainerContextDispatcher);
+
+  const searchHandler = (value) => {
+    const cloneTodoList = JSON.parse(localStorage.getItem("todoList")) || [];
+    const filtered = cloneTodoList.filter((item) => {
+      return item.text.toLowerCase().includes(value.toLowerCase());
+    });
+    setTodoList(filtered);
+  };
   const addTodosHandler = (value) => {
     const newTodo = {
       text: value,
@@ -144,6 +152,7 @@ export const useTodosAction = () => {
   };
 
   return {
+    searchHandler,
     addTodosHandler,
     completedHandler,
     deleteHandler,

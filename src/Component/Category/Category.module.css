@@ -6,8 +6,8 @@
   padding: 2rem 1rem;
   border-radius: 10px;
   width: 100%;
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 180px;
+  max-width: 180px;
   height: 120px;
   cursor: pointer;
 }
@@ -26,7 +26,7 @@
 }
 
 .categoryForm {
-  padding: 1rem;
+  padding:1.5rem 1rem;
 }
 
 .categoryForm button {
@@ -51,4 +51,20 @@
 
 input[type="radio"] {
   display: none;
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .categoryItem {
+    padding: 2rem 1rem;
+    width: 100%;
+    min-width: 250px;
+    max-width: 250px;
+    height: 120px;
+  }
+  .categoryForm {
+    padding: 1rem;
+  }  
+  
 }

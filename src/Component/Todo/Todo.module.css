@@ -28,7 +28,7 @@
   white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: 22px;
+  margin-left: 25px;
 }
 
 .title::before {

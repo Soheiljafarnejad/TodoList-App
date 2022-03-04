@@ -5,8 +5,8 @@ import TodoContext from "./Component/Context/TodoContext";
 const App = () => {
   return (
     <>
-      <HeaderCom />
       <TodoContext>
+      <HeaderCom />
         <TodoApp />
       </TodoContext>
     </>

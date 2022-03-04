@@ -47,12 +47,13 @@ body {
 button,
 input {
   font-family: "Quicksand", sans-serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 500;
   outline: none;
   border: none;
   border-radius: 5px;
 }
+
 
 button {
   cursor: pointer;
@@ -62,7 +63,7 @@ button {
 input {
   border: 2px solid var(--gray);
   width: 100%;
-  min-width: 180px;
+  min-width: 150px;
   padding: 0.5rem;
 }
 
