@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-.btnFocus {
-  border: 2px solid var(--blue);
-  border-left: 0;
-}
-
 .form {
   display: flex;
   overflow: hidden;

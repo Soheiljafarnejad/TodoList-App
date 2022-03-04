@@ -12,24 +12,19 @@
 :root {
   --body-dark: #3d47af;
   --body-color: #f4f6fd;
-  --color-navBar: #0a155a;
+  --bg-nav: #023e8a;
+  --color-nav: #bbc2d8;
   --pink-dark: #a056c5;
   --pink: #d103fc;
   --blue: #2684ff;
   --white: #fff;
   --gray: #9ca3af;
   --gray-primary: #efefef;
-
-  --color: #adbaeb;
-  --color: #020417;
-  --color: #373b5e;
-  --color: #010319;
-  --color: #48466b;
-  --color: #bbc2d8;
 }
 
 .container {
   width: 95%;
+  max-width: 1400px;
   margin: 2rem auto;
 }
 
@@ -54,10 +49,9 @@ input {
   border-radius: 5px;
 }
 
-
 button {
   cursor: pointer;
-  background-color: #d4d4d4
+  background-color: #d4d4d4;
 }
 
 input {
