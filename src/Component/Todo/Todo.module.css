@@ -45,7 +45,13 @@
 }
 
 .category {
+  display: block;
   color: var(--gray);
+  width: 70vw;
+  max-width: 1200px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn {
