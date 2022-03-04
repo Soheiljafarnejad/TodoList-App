@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import TodoForm from "./TodoForm/TodoForm";
 import TodoList from "./TodoList/TodoList";
 import TodoSelect from "./TodoSelect/TodoSelect";
@@ -6,7 +7,7 @@ import { useTodos, useTodosAction } from "./Context/TodoContext";
 import CategoryList from "./CategoryList/CategoryList";
 
 const TodoApp = () => {
-  const { todos, status, statusCategory, category } = useTodos();
+  const { todos, status, category, categoryList } = useTodos();
 
   const {
     filterCategoryHandler,
@@ -14,28 +15,30 @@ const TodoApp = () => {
     valueCategoryHandler,
     setTodoList,
     setTodos,
-    setCategory,
+    setCategoryList,
   } = useTodosAction();
 
   //re render when updated
   useEffect(() => {
     setTodoList(todos);
-    filterCategoryHandler(statusCategory);
+    filterCategoryHandler(category);
     filterStatusHandler(status);
-    valueCategoryHandler(statusCategory.title);
-  }, [todos, statusCategory, status]);
+    valueCategoryHandler(category.title);
+  }, [todos, category, status]);
 
   // localStorage
 
   useEffect(() => {
-    setCategory(JSON.parse(localStorage.getItem("category")) || category);
+    setCategoryList(
+      JSON.parse(localStorage.getItem("category")) || categoryList
+    );
     setTodos(JSON.parse(localStorage.getItem("todos")) || todos);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("category", JSON.stringify(category));
+    localStorage.setItem("category", JSON.stringify(categoryList));
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos, category]);
+  }, [todos, categoryList]);
 
   return (
     <>

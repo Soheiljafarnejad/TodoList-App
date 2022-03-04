@@ -1,6 +1,7 @@
 import style from "./Todo.module.css";
 import { BiTrashAlt } from "react-icons/bi";
 import { BiEdit } from "react-icons/bi";
+import ReactTooltip from "react-tooltip";
 
 const Todo = ({ todo, onComplete, onDelete, onEdit }) => {
   return (
@@ -19,13 +20,25 @@ const Todo = ({ todo, onComplete, onDelete, onEdit }) => {
         </div>
         <span className={style.category}>{todo.category}</span>
       </div>
-      <div>
-        <button className={style.btn} onClick={onEdit}>
+      <div className={style.btnContainer}>
+        <button
+          data-tip={"Edit"}
+          data-class="tooltip"
+          className={style.btn}
+          onClick={onEdit}
+        >
           {<BiEdit />}
         </button>
-        <button className={style.btn} onClick={onDelete}>
+        <ReactTooltip />
+        <button
+          data-tip={"Delete"}
+          data-class="tooltip"
+          className={style.btn}
+          onClick={onDelete}
+        >
           {<BiTrashAlt />}
         </button>
+        <ReactTooltip />
       </div>
     </div>
   );

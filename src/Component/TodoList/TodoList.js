@@ -10,13 +10,12 @@ const TodoList = () => {
   const { completedHandler, deleteHandler, editTodoHandler } = useTodosAction();
 
   const [selectedEdit, setSelectedEdit] = useState({ id: null });
-
   if (selectedEdit.id) {
     return (
       <TodoEdit
-        edit={selectedEdit}
+        selectedEdit={selectedEdit}
+        setSelectedEdit={setSelectedEdit}
         editTodoHandler={editTodoHandler}
-        deleteHandler={deleteHandler}
       />
     );
   }

@@ -3,7 +3,7 @@ import style from "./Category.module.css";
 import { BiTrashAlt } from "react-icons/bi";
 
 const Category = ({ title, value, color, id, onDelete }) => {
-  const { todos, statusCategory } = useTodos();
+  const { todos, category } = useTodos();
   const { filterCategoryHandler } = useTodosAction();
   const clickHandler = (e) => {
     const value = {
@@ -24,7 +24,7 @@ const Category = ({ title, value, color, id, onDelete }) => {
       <label
         htmlFor={id}
         className={`${style.categoryItem} ${
-          statusCategory.title === title ? `selected-${color}` : ""
+          category.title === title ? `selected-${color}` : ""
         }`}
       >
         <div className={style.discretion}>

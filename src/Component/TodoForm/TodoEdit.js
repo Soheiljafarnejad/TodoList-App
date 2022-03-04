@@ -1,36 +1,59 @@
 import { useEffect, useRef, useState } from "react";
+import style from "./TodoForm.module.css";
+import toast from "react-hot-toast";
 
-const TodoEdit = ({ edit, editTodoHandler, deleteHandler }) => {
-  const [editValue, setEditValue] = useState(edit.text);
+const TodoEdit = ({ selectedEdit, setSelectedEdit, editTodoHandler }) => {
+  const [value, setValue] = useState(selectedEdit.text);
 
-  const editRef = useRef();
-
+  const inputRef = useRef();
   useEffect(() => {
-    editRef.current.focus();
+    inputRef.current.focus();
   });
 
   const inputHandler = (e) => {
-    setEditValue(e.target.value);
+    setValue(e.target.value);
   };
 
   const editValueHandler = (e) => {
     e.preventDefault();
-    if (editValue === "") {
-      deleteHandler(edit.id);
-      edit.id = null;
+    // canceled
+    if (e.nativeEvent.submitter.id === "cancel") {
+      setSelectedEdit({ id: null });
       return;
     }
-    editTodoHandler(edit.id, editValue);
-    setEditValue("");
-    edit.id = null;
+    // updated
+    if (value.trim() === selectedEdit.text) {
+      toast.error("enter a new value");
+      return;
+    }
+    if (value === "") {
+      toast.error("Please enter value");
+      return;
+    }
+    editTodoHandler(selectedEdit.id, value);
+    toast.success("Updated");
+    setValue("");
+    setSelectedEdit({ id: null });
   };
 
   return (
     <section className="container">
       <h2>Edit</h2>
-      <form onSubmit={editValueHandler}>
-        <input onChange={inputHandler} value={editValue} ref={editRef} />
-        <button type="submit">updated</button>
+      <form onSubmit={editValueHandler} className={style.form}>
+        <input
+          onChange={inputHandler}
+          value={value}
+          ref={inputRef}
+          onBlur={() => inputRef.current.focus()}
+        />
+        {}
+        <button
+          type="submit"
+          id={value.trim() === selectedEdit.text ? "cancel" : "update"}
+          className={`${style.btn}`}
+        >
+          {value.trim() === selectedEdit.text ? "cancel" : "update"}
+        </button>
       </form>
     </section>
   );

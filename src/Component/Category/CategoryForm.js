@@ -1,17 +1,32 @@
-import { useState } from "react";
-import { useTodosAction } from "../Context/TodoContext";
+import { useState,useRef } from "react";
+import { useTodos, useTodosAction } from "../Context/TodoContext";
 import style from "./Category.module.css";
+import toast from "react-hot-toast";
 const CategoryForm = () => {
+  const { categoryList } = useTodos();
   const { addCategoryHandler } = useTodosAction();
   const [value, setValue] = useState("");
+
+  const inputRef = useRef();
+  
+
   const valueHandler = (e) => {
-    setValue(e.target.value);
+    const textValidation = e.target.value.trim().toLowerCase();
+    setValue(textValidation);
   };
 
   const submitHandler = (e) => {
+    inputRef.current.focus();
     e.preventDefault();
     if (!value) {
-      alert("add category");
+      toast.error("Please enter category");
+      return;
+    }
+    const noRepetition = categoryList.find(
+      (item) => item.title.toLowerCase() === value
+    );
+    if (noRepetition) {
+      toast.error("There are categories");
       return;
     }
     addCategoryHandler(value);
@@ -28,6 +43,7 @@ const CategoryForm = () => {
         value={value}
         className={style.input}
         placeholder="New category..."
+        ref={inputRef}
       />
       <button type="submit">Add</button>
     </form>

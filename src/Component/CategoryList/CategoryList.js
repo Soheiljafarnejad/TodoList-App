@@ -4,14 +4,14 @@ import { useTodos, useTodosAction } from "../Context/TodoContext";
 import style from "./CategoryList.module.css";
 
 const CategoryList = () => {
-  const { category } = useTodos();
+  const { categoryList } = useTodos();
   const { deleteCategoryHandler } = useTodosAction();
   return (
     <section className="container">
       <h2>Categories</h2>
       <div className={style.category}>
         <CategoryForm />
-        {category.map((item) => {
+        {categoryList.map((item) => {
           return (
             <Category
               title={item.title}

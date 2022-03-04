@@ -40,3 +40,8 @@
   border: 2px outset var(--pink);
 }
 
+.tooltip {
+  font-family: "Quicksand", sans-serif !important;
+  font-size: 1.8rem !important;
+  padding: 0.5rem 1rem !important;
+}

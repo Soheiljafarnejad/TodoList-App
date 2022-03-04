@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const TodoContainerContext = createContext();
 const TodoContainerContextDispatcher = createContext();
@@ -9,26 +9,26 @@ const TodoContext = ({ children }) => {
   const [status, setStatus] = useState("All");
 
   // category state
-  const [statusCategory, setStatusCategory] = useState({
+  const [category, setCategory] = useState({
     title: "All",
     color: "blue",
   });
-  const [category, setCategory] = useState([
+  const [categoryList, setCategoryList] = useState([
     { title: "All", color: "blue", id: 0 },
   ]);
   // end
 
   return (
     <TodoContainerContext.Provider
-      value={{ todos, todoList, status, statusCategory, category }}
+      value={{ todos, todoList, status, category, categoryList }}
     >
       <TodoContainerContextDispatcher.Provider
         value={{
           setTodos,
           setTodoList,
           setStatus,
-          setStatusCategory,
           setCategory,
+          setCategoryList,
         }}
       >
         {children}
@@ -41,18 +41,14 @@ export default TodoContext;
 
 export const useTodos = () => useContext(TodoContainerContext);
 export const useTodosAction = () => {
-  const { todos, todoList, status, statusCategory, category } = useTodos();
-  const { setTodos, setTodoList, setStatus, setStatusCategory, setCategory } =
+  const { todos, category, categoryList } = useTodos();
+  const { setTodos, setTodoList, setStatus, setCategory, setCategoryList } =
     useContext(TodoContainerContextDispatcher);
   const addTodosHandler = (value) => {
-    if (statusCategory.title === "All") {
-      alert("add category");
-      return;
-    }
     const newTodo = {
       text: value,
-      category: statusCategory.title,
-      color: statusCategory.color,
+      category: category.title,
+      color: category.color,
       id: new Date().getTime(),
       isComplete: false,
     };
@@ -106,7 +102,7 @@ export const useTodosAction = () => {
   };
   // categoryHandler
   const filterCategoryHandler = (category) => {
-    setStatusCategory(category);
+    setCategory(category);
     if (category.title === "All") {
       return localStorage.setItem("todoList", JSON.stringify(todos));
     }
@@ -115,31 +111,21 @@ export const useTodosAction = () => {
   };
 
   const addCategoryHandler = (title) => {
-    // Text validation
-    const titleFiltered = title.toLowerCase();
-    const noRepetition = category.find(
-      (item) => item.title.toLowerCase() === titleFiltered
-    );
-    if (noRepetition) {
-      alert("The category is duplicate !");
-      return;
-    }
-    //
-    const length = category.length;
+    const length = categoryList.length;
     const color = length % 2 === 0 ? "blue" : "pink";
     const newCategory = {
-      title: titleFiltered,
+      title: title,
       value: 0,
       color: color,
       id: new Date().getTime(),
     };
-    setCategory([...category, newCategory]);
+    setCategoryList([...categoryList, newCategory]);
   };
 
   const deleteCategoryHandler = (id) => {
-    const temp = category.filter((item) => item.id === id);
-    const deleted = category.filter((item) => item.id !== id);
-    setCategory(deleted);
+    const temp = categoryList.filter((item) => item.id === id);
+    const deleted = categoryList.filter((item) => item.id !== id);
+    setCategoryList(deleted);
 
     // deleted All todo Category
     const deletedTodo = todos.filter((item) => item.category !== temp[0].title);
@@ -149,13 +135,12 @@ export const useTodosAction = () => {
   const valueCategoryHandler = (title, isExit) => {
     let value = todos.filter((item) => item.category === title).length;
     if (isExit) value--;
-    const index = category.findIndex((item) => item.title === title);
-    const selectCategory = { ...category[index] };
+    const index = categoryList.findIndex((item) => item.title === title);
+    const selectCategory = { ...categoryList[index] };
     selectCategory.value = value;
-    console.log(value);
-    const cloneCategory = [...category];
+    const cloneCategory = [...categoryList];
     cloneCategory[index] = selectCategory;
-    setCategory(cloneCategory);
+    setCategoryList(cloneCategory);
   };
 
   return {
@@ -170,8 +155,8 @@ export const useTodosAction = () => {
     valueCategoryHandler,
     setTodoList,
     setStatus,
-    setStatusCategory,
-    setTodos,
     setCategory,
+    setTodos,
+    setCategoryList,
   };
 };
