@@ -21,23 +21,20 @@ const Todo = ({ todo, onComplete, onDelete, onEdit }) => {
         <span className={style.category}>{todo.category}</span>
       </div>
       <div className={style.btnContainer}>
-        <button
+        <BiEdit
+          className={`icons ${style.btn}`}
           data-tip={"Edit"}
           data-class="tooltip"
-          className={style.btn}
           onClick={onEdit}
-        >
-          {<BiEdit />}
-        </button>
-        <ReactTooltip />
-        <button
+        />
+
+        <BiTrashAlt
+          className={`icons ${style.btn}`}
           data-tip={"Delete"}
           data-class="tooltip"
-          className={style.btn}
           onClick={onDelete}
-        >
-          {<BiTrashAlt />}
-        </button>
+        />
+
         <ReactTooltip />
       </div>
     </div>

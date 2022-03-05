@@ -45,3 +45,13 @@
   font-size: 1.8rem !important;
   padding: 0.5rem 1rem !important;
 }
+
+.icons{
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.iconsBig{
+  font-size: 3rem;
+  cursor: pointer;
+}

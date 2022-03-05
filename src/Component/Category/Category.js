@@ -32,7 +32,7 @@ const Category = ({ title, value, color, id, onDelete }) => {
             tasks {id !== 0 ? value : todos.length}
           </span>
           {id !== 0 && (
-            <BiTrashAlt onClick={onDelete} className={style.trash} />
+            <BiTrashAlt onClick={onDelete} className="icons" />
           )}
         </div>
         <h3 className={`${style.title} ${color}`}>{title}</h3>

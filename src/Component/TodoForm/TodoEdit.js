@@ -22,16 +22,12 @@ const TodoEdit = ({ selectedEdit, setSelectedEdit, editTodoHandler }) => {
       return;
     }
     // updated
-    if (value.trim() === selectedEdit.text) {
-      toast.error("enter a new value");
-      return;
-    }
     if (value === "") {
-      toast.error("Please enter value");
+      toast.error("can not be empty!");
       return;
     }
     editTodoHandler(selectedEdit.id, value);
-    toast.success("Updated");
+    toast.success("updated");
     setValue("");
     setSelectedEdit({ id: null });
   };

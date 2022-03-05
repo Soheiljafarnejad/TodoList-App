@@ -10,10 +10,9 @@
 }
 
 :root {
-  --body-dark: #3d47af;
+  --body-dark: #0466c8;
   --body-color: #f4f6fd;
-  --bg-nav: #023e8a;
-  --color-nav: #bbc2d8;
+  --color-nav: #e9ecef;
   --pink-dark: #a056c5;
   --pink: #d103fc;
   --blue: #2684ff;
@@ -25,7 +24,7 @@
 .container {
   width: 95%;
   max-width: 1400px;
-  margin: 2rem auto;
+  margin: 3rem auto;
 }
 
 html {
@@ -51,14 +50,19 @@ input {
 
 button {
   cursor: pointer;
-  background-color: #d4d4d4;
+  background-color: #0466c8;
+  color: white;
 }
 
 input {
-  border: 2px solid var(--gray);
+  border: 1.9px solid var(--gray);
   width: 100%;
   min-width: 150px;
   padding: 0.5rem;
+}
+
+input:focus {
+  border: 2px solid #0466c8;
 }
 
 h1 {

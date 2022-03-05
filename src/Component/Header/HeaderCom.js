@@ -23,8 +23,8 @@ const HeaderCom = ({ setToggle }) => {
   return (
     <header className={`container ${style.container}`}>
       <section className={style.header}>
-        <div className={style.icons}>
-          <BiMenu onClick={onClickMenu} className={style.menu} />
+        <div className={style.nav}>
+          <BiMenu onClick={onClickMenu} className="iconsBig" />
           <div className={style.searchBar}>
             {isSearch && (
               <input
@@ -35,10 +35,10 @@ const HeaderCom = ({ setToggle }) => {
                 placeholder="search..."
               />
             )}
-            <BiSearchAlt onClick={onSearch} className={style.iconSearch} />
+            <BiSearchAlt onClick={onSearch} className="iconsBig" />
           </div>
         </div>
-        <h1 className={style.title}>What's up joy!</h1>
+        <h1 className={style.title}>Todo List App</h1>
       </section>
     </header>
   );

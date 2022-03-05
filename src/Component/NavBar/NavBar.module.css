@@ -1,6 +1,6 @@
 .navBar {
   position: fixed;
-  background-color: var(--bg-nav);
+  background-color: var(--body-dark);
   color: var(--color-nav);
   top: 0;
   bottom: 0;

@@ -17,7 +17,7 @@
 }
 
 .title {
-  padding-bottom: 3.3rem;
+  padding-bottom: 3rem;
   border-radius: 2px;
   overflow: hidden;
   white-space: nowrap;
@@ -33,9 +33,7 @@
 }
 
 .categoryForm button {
-  margin-bottom: 0.5rem;
-
-  padding: 0.25rem 0;
+  padding: 0.5rem 0;
 }
 
 .categoryForm input {
@@ -49,21 +47,13 @@
   justify-content: space-between;
 }
 
-.trash {
-  box-sizing: content-box;
-  background-color: var(--gray-primary);
-  padding: 0.5rem;
-  border-radius: 50%;
-  font-size: 2rem;
-}
-
 input[type="radio"] {
   display: none;
 }
 
 @media screen and (min-width: 768px) {
   .categoryItem {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
     width: 100%;
     min-width: 250px;
     max-width: 250px;
@@ -73,6 +63,9 @@ input[type="radio"] {
     padding: 1rem;
   }
 
+  .categoryForm button {
+    margin-bottom: 0.5rem;
+  }
   .categoryForm input {
     font-size: 2.5rem;
   }

@@ -4,7 +4,7 @@ import { useTodos, useTodosAction } from "../Context/TodoContext";
 import toast, { Toaster } from "react-hot-toast";
 
 const TodoForm = () => {
-  const { category } = useTodos();
+  const { category,categoryList } = useTodos();
   const { addTodosHandler } = useTodosAction();
   const [inputValue, setInputValue] = useState("");
 
@@ -18,11 +18,15 @@ const TodoForm = () => {
     inputRef.current.focus();
     e.preventDefault();
     if (inputValue === "") {
-      toast.error("Please enter value");
+      toast.error("enter a new task");
+      return;
+    }
+    if (categoryList.length === 1) {
+      toast.error("create a new category");
       return;
     }
     if (category.title === "All") {
-      toast.error("Select a category");
+      toast.error("select a category");
       return;
     }
     addTodosHandler(inputValue);
