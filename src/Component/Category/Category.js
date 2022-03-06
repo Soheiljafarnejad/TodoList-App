@@ -31,11 +31,9 @@ const Category = ({ title, value, color, id, onDelete }) => {
           <span className={style.value}>
             tasks {id !== 0 ? value : todos.length}
           </span>
-          {id !== 0 && (
-            <BiTrashAlt onClick={onDelete} className="icons" />
-          )}
+          {id !== 0 && <BiTrashAlt onClick={onDelete} className="icons" />}
         </div>
-        <h3 className={`${style.title} ${color}`}>{title}</h3>
+        <h3 className={`${style.title} ${color}`}>{id === 0 ? "All task":title}</h3>
       </label>
     </div>
   );

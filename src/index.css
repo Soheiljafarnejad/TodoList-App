@@ -7,24 +7,29 @@
   padding: 0;
   list-style: none;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
 }
 
 :root {
   --body-dark: #0466c8;
   --body-color: #f4f6fd;
   --color-nav: #e9ecef;
-  --pink-dark: #a056c5;
   --pink: #d103fc;
   --blue: #2684ff;
   --white: #fff;
-  --gray: #9ca3af;
+  --gray: #373b5e;
   --gray-primary: #efefef;
 }
 
 .container {
   width: 95%;
   max-width: 1400px;
-  margin: 3rem auto;
+  margin: 2rem auto;
 }
 
 html {
@@ -41,28 +46,28 @@ body {
 button,
 input {
   font-family: "Quicksand", sans-serif;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 500;
   outline: none;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 button {
   cursor: pointer;
-  background-color: #0466c8;
+  background-color: var(--gray);
   color: white;
 }
 
 input {
-  border: 1.9px solid var(--gray);
+  border: 1px solid var(--gray);
   width: 100%;
   min-width: 150px;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 }
 
 input:focus {
-  border: 2px solid #0466c8;
+  border: 1px solid var(--blue);
 }
 
 h1 {
@@ -77,16 +82,24 @@ h2 {
   margin-bottom: 1rem;
 }
 
+h3 {
+  font-size: 2.2rem;
+}
+
 @media screen and (min-width: 768px) {
   body,
   button,
   input {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
   h1 {
-    font-size: 5rem;
+    font-size: 4rem;
   }
   h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
     font-size: 3rem;
   }
 }

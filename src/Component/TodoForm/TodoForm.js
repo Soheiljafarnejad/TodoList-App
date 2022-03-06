@@ -4,7 +4,7 @@ import { useTodos, useTodosAction } from "../Context/TodoContext";
 import toast, { Toaster } from "react-hot-toast";
 
 const TodoForm = () => {
-  const { category,categoryList } = useTodos();
+  const { category, categoryList } = useTodos();
   const { addTodosHandler } = useTodosAction();
   const [inputValue, setInputValue] = useState("");
 
@@ -34,21 +34,21 @@ const TodoForm = () => {
   };
 
   return (
-    <section className="container">
-      <h2>Do you add anything?</h2>
-      <form onSubmit={submitHandler} className={style.form}>
-        <input
-          onChange={inputHandler}
-          type="text"
-          value={inputValue}
-          placeholder="add task..."
-          ref={inputRef}
-        />
-        <button className={`${style.btn}`} type="submit">
-          Add
-        </button>
-        <Toaster />
-      </form>
+    <section className={`container ${style.form}`}>
+        <h2>Do you add anything?</h2>
+        <form onSubmit={submitHandler}>
+          <input
+            onChange={inputHandler}
+            type="text"
+            value={inputValue}
+            placeholder="add new task"
+            ref={inputRef}
+          />
+          <button className={`${style.btn}`} type="submit">
+            Add
+          </button>
+          <Toaster />
+        </form>
     </section>
   );
 };

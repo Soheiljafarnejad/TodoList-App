@@ -2,18 +2,20 @@ import style from "./Todo.module.css";
 import { BiTrashAlt } from "react-icons/bi";
 import { BiEdit } from "react-icons/bi";
 import ReactTooltip from "react-tooltip";
+import { TiTick } from "react-icons/ti";
 
 const Todo = ({ todo, onComplete, onDelete, onEdit }) => {
   return (
     <div className={style.todo}>
       <div>
-        <div className={style.description}>
-          <h4
-            onClick={onComplete}
-            className={`${style.title} ${`radio-${todo.color}`} ${
-              todo.isComplete &&
-              `radio-${todo.color}-completed ${style.completed}`
+        <div className={style.description} onClick={onComplete}>
+          <TiTick
+            className={`${style.check} ${`check-${todo.color}`} ${
+              todo.isComplete && `${todo.color}-completed`
             }`}
+          />
+          <h4
+            className={`${style.title} ${todo.isComplete && style.completed}`}
           >
             {todo.text}
           </h4>
@@ -34,7 +36,6 @@ const Todo = ({ todo, onComplete, onDelete, onEdit }) => {
           data-class="tooltip"
           onClick={onDelete}
         />
-
         <ReactTooltip />
       </div>
     </div>

@@ -10,7 +10,7 @@ const CategoryList = () => {
     <section className="container">
       <h2>Categories</h2>
       <div className={style.category}>
-        <CategoryForm />
+      <CategoryForm />
         {categoryList.map((item) => {
           return (
             <Category

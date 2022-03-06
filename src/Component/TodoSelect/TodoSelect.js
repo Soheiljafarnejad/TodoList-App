@@ -1,5 +1,6 @@
 import SelectCom from "../../common/Select/SelectCom";
 import { useTodosAction } from "../Context/TodoContext";
+import style from "./TodoSelect.module.css"
 
 const TodoSelect = () => {
   const { filterStatusHandler, setStatus } = useTodosAction();
@@ -15,7 +16,7 @@ const TodoSelect = () => {
   };
 
   return (
-    <section className="container">
+    <section className={`${style.container} container`}>
       <SelectCom
         title="sort by status:"
         options={filterValue}

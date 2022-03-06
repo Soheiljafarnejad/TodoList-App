@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTodos, useTodosAction } from "../Context/TodoContext";
+import style from "./TodoList.module.css";
 
 import Todo from "../Todo/Todo";
 import TodoEdit from "../TodoForm/TodoEdit";
@@ -27,7 +28,7 @@ const TodoList = () => {
     );
   }
   return (
-    <section className="container">
+    <section className={`container ${style.container}`}>
       <h2>Today's Tasks</h2>
       {todoList.map((todo) => {
         return (

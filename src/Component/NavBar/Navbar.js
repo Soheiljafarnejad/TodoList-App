@@ -6,7 +6,7 @@ import { FiChevronLeft } from "react-icons/fi";
 import ReactTooltip from "react-tooltip";
 
 import style from "./NavBar.module.css";
-import img from "./img/git-dark.png";
+import img from "./img/git-light.jpg";
 
 const NavBar = ({ setToggle }) => {
   const clickHandler = () => {

@@ -3,12 +3,10 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--white);
-  padding: 2rem 1rem;
-  border-radius: 10px;
-  width: 100%;
-  min-width: 170px;
-  max-width: 170px;
-  height: 100px;
+  padding: 2rem;
+  border-radius: 22px;
+  width: 200px;
+  height: 115px;
   cursor: pointer;
 }
 
@@ -17,27 +15,21 @@
 }
 
 .title {
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
   border-radius: 2px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.value {
-  color: var(--gray);
-}
-
 .categoryForm {
   padding: 1rem;
+  min-width: 200px;
 }
 
 .categoryForm button {
   padding: 0.5rem 0;
-}
-
-.categoryForm input {
-  font-size: 1.8rem;
 }
 
 .discretion {
@@ -53,20 +45,18 @@ input[type="radio"] {
 
 @media screen and (min-width: 768px) {
   .categoryItem {
-    padding: 1.5rem 1rem;
-    width: 100%;
-    min-width: 250px;
-    max-width: 250px;
-    height: 120px;
+    width: 250px;
+    height: 130px;
   }
   .categoryForm {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
+    min-width: 250px;
   }
 
-  .categoryForm button {
-    margin-bottom: 0.5rem;
-  }
   .categoryForm input {
-    font-size: 2.5rem;
+    font-size: 2rem;
+  }
+  .value {
+    font-size: 2rem;
   }
 }

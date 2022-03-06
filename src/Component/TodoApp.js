@@ -43,6 +43,7 @@ const TodoApp = () => {
   return (
     <>
       <CategoryList />
+
       <TodoForm />
       <TodoSelect />
       <TodoList />

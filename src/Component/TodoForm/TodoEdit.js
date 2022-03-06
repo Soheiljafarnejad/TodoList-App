@@ -33,9 +33,9 @@ const TodoEdit = ({ selectedEdit, setSelectedEdit, editTodoHandler }) => {
   };
 
   return (
-    <section className="container">
+    <section className={`container ${style.form}`}>
       <h2>Edit</h2>
-      <form onSubmit={editValueHandler} className={style.form}>
+      <form onSubmit={editValueHandler}>
         <input
           onChange={inputHandler}
           value={value}

@@ -1,6 +1,6 @@
 .navBar {
   position: fixed;
-  background-color: var(--body-dark);
+  background-color: var(--gray);
   color: var(--color-nav);
   top: 0;
   bottom: 0;
@@ -30,22 +30,21 @@
 }
 
 .profile {
-  border-top: 3px outset var(--pink);
-  border-left: 4px solid var(--blue);
-  border-right: 3px solid var(--pink);
-  border-bottom: 4px outset var(--blue);
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
 }
 
 .close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
   cursor: pointer;
   border: 2px solid var(--color-nav);
   border-radius: 50%;
-  font-size: 4rem;
+  font-size: 3.5rem;
   padding-right: 0.2rem;
 }
 

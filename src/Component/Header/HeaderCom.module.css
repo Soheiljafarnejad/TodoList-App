@@ -1,19 +1,10 @@
-.container{
+.container {
   margin-top: 1rem !important;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  margin-top: 1rem;
-}
-.nav {
+.nav{
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .searchBar {
@@ -27,8 +18,8 @@
 
 .search {
   margin: 0 1rem;
-  padding: 0.2rem 0.5rem;
   max-width: 200px;
+  min-width: 100px;
 }
 
 @media screen and (min-width: 768px) {
