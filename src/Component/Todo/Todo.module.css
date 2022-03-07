@@ -18,7 +18,7 @@
   align-items: center;
 }
 
-.check{
+.check {
   border-radius: 50%;
   font-size: 1.7rem;
   cursor: pointer;
@@ -34,12 +34,11 @@
   cursor: pointer;
   width: 60vw;
   max-width: 1200px;
-  white-space: normal;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 4px;
 }
-
 
 .category {
   display: block;
@@ -62,7 +61,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .check{
+  .check {
     font-size: 2rem;
   }
 }

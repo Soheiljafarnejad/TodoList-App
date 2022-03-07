@@ -7,8 +7,7 @@
 }
 
 .selected {
-  width: 30%;
-  min-width: 150px;
+  flex-grow: 1;
 }
 
 .select span {
@@ -20,5 +19,9 @@
     justify-content: flex-end;
     width: 100%;
     font-size: 2rem;
+  }
+  .selected {
+    flex-grow: 0;
+    min-width: 350px;
   }
 }
