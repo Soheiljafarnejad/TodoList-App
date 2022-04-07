@@ -5,30 +5,27 @@ const TodoContainerContextDispatcher = createContext();
 
 const TodoContext = ({ children }) => {
   const [todos, setTodos] = useState([]);
-  const [todoList, setTodoList] = useState([]);
   const [status, setStatus] = useState("All");
 
-  // category state
-  const [category, setCategory] = useState({
-    title: "All",
-    color: "blue",
-  });
   const [categoryList, setCategoryList] = useState([
-    { title: "All", color: "blue", id: 0 },
+    { title: "Personal", value: 0, color: "blue", id: 1 },
+    { title: "Business", value: 0, color: "pink", id: 2 },
+    { title: "School", value: 0, color: "blue", id: 3 },
+    { title: "Work", value: 0, color: "pink", id: 4 },
   ]);
+  const [category, setCategory] = useState({});
   // end
 
   return (
     <TodoContainerContext.Provider
-      value={{ todos, todoList, status, category, categoryList }}
+      value={{ todos, status, categoryList, category }}
     >
       <TodoContainerContextDispatcher.Provider
         value={{
           setTodos,
-          setTodoList,
           setStatus,
-          setCategory,
           setCategoryList,
+          setCategory,
         }}
       >
         {children}
@@ -41,8 +38,8 @@ export default TodoContext;
 
 export const useTodos = () => useContext(TodoContainerContext);
 export const useTodosAction = () => {
-  const { todos, category, categoryList } = useTodos();
-  const { setTodos, setTodoList, setStatus, setCategory, setCategoryList } =
+  const { todos, categoryList, category } = useTodos();
+  const { setTodos, setStatus, setCategory, setCategoryList } =
     useContext(TodoContainerContextDispatcher);
 
   const searchHandler = (value) => {
@@ -50,11 +47,15 @@ export const useTodosAction = () => {
     const filtered = cloneTodoList.filter((item) => {
       return item.text.toLowerCase().includes(value.toLowerCase());
     });
-    setTodoList(filtered);
+    // setTodoList(filtered);
   };
   const addTodosHandler = (value) => {
+    if(!category.title){
+      alert("h")
+      return
+    }
     const newTodo = {
-      text: value,
+      title: value,
       category: category.title,
       color: category.color,
       id: new Date().getTime(),
@@ -90,44 +91,12 @@ export const useTodosAction = () => {
     setTodos(cloneTodo);
   };
 
-  const filterStatusHandler = (value) => {
-    const cloneTodoList = JSON.parse(localStorage.getItem("todoList")) || [];
-    switch (value) {
-      case "All": {
-        return setTodoList(cloneTodoList);
-      }
-      case "Completed": {
-        const selectItem = cloneTodoList.filter((item) => item.isComplete);
-        return setTodoList(selectItem);
-      }
-      case "Uncompleted": {
-        const selectItem = cloneTodoList.filter((item) => !item.isComplete);
-        return setTodoList(selectItem);
-      }
-      default:
-        return setTodoList(cloneTodoList);
-    }
-  };
   // categoryHandler
-  const filterCategoryHandler = (category) => {
-    setCategory(category);
-    if (category.title === "All") {
-      return localStorage.setItem("todoList", JSON.stringify(todos));
-    }
-    const sorted = todos.filter((item) => item.category === category.title);
-    localStorage.setItem("todoList", JSON.stringify(sorted));
-  };
-
-  const addCategoryHandler = (title) => {
-    const length = categoryList.length;
-    const color = length % 2 === 0 ? "blue" : "pink";
-    const newCategory = {
-      title: title,
-      value: 0,
-      color: color,
-      id: new Date().getTime(),
-    };
-    setCategoryList([...categoryList, newCategory]);
+  const selectCategory = (id) => {
+    const selected = categoryList.filter(
+      (item) => parseInt(item.id) === parseInt(id)
+    );
+    setCategory(selected[0]);
   };
 
   const deleteCategoryHandler = (id) => {
@@ -157,12 +126,9 @@ export const useTodosAction = () => {
     completedHandler,
     deleteHandler,
     editTodoHandler,
-    filterStatusHandler,
-    filterCategoryHandler,
-    addCategoryHandler,
+    selectCategory,
     deleteCategoryHandler,
     valueCategoryHandler,
-    setTodoList,
     setStatus,
     setCategory,
     setTodos,

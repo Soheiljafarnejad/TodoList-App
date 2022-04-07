@@ -17,7 +17,7 @@ const Todo = ({ todo, onComplete, onDelete, onEdit }) => {
           <h4
             className={`${style.title} ${todo.isComplete && style.completed}`}
           >
-            {todo.text}
+            {todo.title}
           </h4>
         </div>
         <span className={style.category}>{todo.category}</span>

@@ -4,7 +4,7 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import { useState } from "react";
 import { useTodosAction } from "../Context/TodoContext";
 
-const HeaderCom = ({ setToggle }) => {
+const HeaderCom = () => {
   const { searchHandler } = useTodosAction();
   const [isSearch, setIsSearch] = useState(false);
 
@@ -15,13 +15,10 @@ const HeaderCom = ({ setToggle }) => {
     setIsSearch(!isSearch);
   };
 
-  const onClickMenu = () => {
-    setToggle(true);
-  };
   return (
     <header className={`container ${style.container}`}>
       <div className={style.nav}>
-        <BiMenuAltLeft onClick={onClickMenu} className="iconsBig" />
+        <BiMenuAltLeft className="iconsBig" />
         <div className={style.searchBar}>
           {isSearch && (
             <input
