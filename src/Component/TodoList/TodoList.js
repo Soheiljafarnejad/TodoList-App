@@ -9,31 +9,38 @@ import Todo from "../Todo/Todo";
 import TodoEdit from "../TodoEdit/TodoEdit";
 
 const TodoList = () => {
-  const [toggle, setToggle] = useState();
+  const [toggle, setToggle] = useState({ type: "" });
   const { todos } = useTodos();
+  const [editValue, setEditValue] = useState();
   const { completedHandler, deleteHandler, editTodoHandler } = useTodosAction();
-  const [selectedEdit, setSelectedEdit] = useState({ id: null });
-  if (selectedEdit.id) {
-    return (
-      <TodoEdit
-        selectedEdit={selectedEdit}
-        setSelectedEdit={setSelectedEdit}
-        editTodoHandler={editTodoHandler}
-      />
-    );
-  }
+
+  const onEdit = (value) => {
+    console.log(value);
+    setEditValue(value);
+    setToggle({ type: "edit" });
+  };
+
   const toggleHandler = () => {
-    setToggle(true);
+    setToggle({ type: "add" });
   };
 
   return (
     <section className={`container ${style.todoList}`}>
       <div className={style.header}>
         <h2>My Tasks</h2>
-        <FaRegPlusSquare onClick={toggleHandler} />
-        {toggle && (
+        <FaRegPlusSquare className="icons" onClick={toggleHandler} />
+        {toggle.type === "add" && (
           <Modal>
             <TodoAdd setToggle={setToggle} />
+          </Modal>
+        )}
+        {toggle.type === "edit" && (
+          <Modal>
+            <TodoEdit
+              setToggle={setToggle}
+              value={editValue}
+              setValue={setEditValue}
+            />
           </Modal>
         )}
       </div>
@@ -45,7 +52,7 @@ const TodoList = () => {
               todo={todo}
               onComplete={() => completedHandler(todo.id)}
               onDelete={() => deleteHandler(todo.id)}
-              onEdit={() => setSelectedEdit(todo)}
+              onEdit={() => onEdit(todo)}
             />
           );
         })}

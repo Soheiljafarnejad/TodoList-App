@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import style from "./TodoForm.module.css";
+import toast from "react-hot-toast";
 
-
-const TodoForm = ({ setToggle, value, setValue, onSubmit }) => {
+const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -16,15 +16,20 @@ const TodoForm = ({ setToggle, value, setValue, onSubmit }) => {
   const formHandler = (e) => {
     e.preventDefault();
     if (e.nativeEvent.submitter.name === "cancel") {
-      setToggle(false);
+      setToggle({ type: "" });
       return;
     }
+    if (!value.title || !value.description) {
+      toast.error("Please fill in all items");
+      return;
+    }
+    toast.success("updated");
     onSubmit();
-    setToggle(false);
+    setToggle({ type: "" });
   };
   return (
     <form className={style.form} onSubmit={formHandler}>
-      <h3>Add new task</h3>
+      <h3>{edit ? "Edit task" : "Add new task"}</h3>
       <input
         onChange={inputHandler}
         type="text"
@@ -44,7 +49,7 @@ const TodoForm = ({ setToggle, value, setValue, onSubmit }) => {
           cancel
         </button>
         <button className={style.save} name="save" type="submit">
-          Add
+          {edit ? "Save" : "Add"}
         </button>
       </div>
     </form>

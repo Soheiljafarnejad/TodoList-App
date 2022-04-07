@@ -1,19 +1,13 @@
 import TodoForm from "../../common/TodoForm/TodoForm";
-import { useTodos, useTodosAction } from "../../Component/Context/TodoContext";
-import toast from "react-hot-toast";
+import { useTodosAction } from "../../Component/Context/TodoContext";
 import { useState } from "react";
 
 const TodoAdd = ({ setToggle }) => {
-  const { categoryList } = useTodos();
   const { addTodosHandler } = useTodosAction();
 
   const [value, setValue] = useState({ title: "", description: "" });
 
   const onSubmit = () => {
-    if (!value.title || !value.description) {
-      toast.error("Enter a new value");
-      return;
-    }
     addTodosHandler(value);
     setValue({ title: "", description: "" });
   };
@@ -21,6 +15,7 @@ const TodoAdd = ({ setToggle }) => {
   return (
     <section className="container">
       <TodoForm
+        edit={false}
         setToggle={setToggle}
         value={value}
         setValue={setValue}

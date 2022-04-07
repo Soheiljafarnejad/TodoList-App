@@ -29,22 +29,22 @@
 
 .purple-completed {
   background-color: var(--purple);
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .pink-completed {
   background-color: var(--pink);
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .green-completed {
   background-color: var(--green);
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .orange-completed {
   background-color: var(--orange);
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 /* title category bottom  */
@@ -87,12 +87,10 @@
 
 .icons {
   font-size: 2.2rem;
-  color: var(--gray);
   cursor: pointer;
 }
 
 .iconsBig {
   font-size: 3rem;
-  color: var(--gray);
   cursor: pointer;
 }
