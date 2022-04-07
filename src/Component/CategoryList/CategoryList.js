@@ -6,8 +6,9 @@ const CategoryList = () => {
   const { categoryList } = useTodos();
   return (
     <section className="container">
-      <h2>Categories</h2>
-      <div className={style.category}>
+      <h2>Dashboard</h2>
+      <p>See your overall performance</p>
+      <div className={style.categoryList}>
         {categoryList.map((item) => {
           return (
             <Category

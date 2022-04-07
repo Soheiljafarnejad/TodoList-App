@@ -1,11 +1,8 @@
-.category {
+.categoryList {
+  margin-top: 3rem;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  overflow-x: auto;
-  overflow-y: hidden;
+  justify-content: space-between;
 }
 
-.category::-webkit-scrollbar {
-  display: none;
-}

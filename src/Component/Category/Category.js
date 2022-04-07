@@ -1,5 +1,9 @@
 import { useTodosAction } from "../Context/TodoContext";
 import style from "./Category.module.css";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { ImPower } from "react-icons/im";
+
+
 
 const Category = ({ title, value, color, id }) => {
   const { selectCategory } = useTodosAction();
@@ -7,12 +11,13 @@ const Category = ({ title, value, color, id }) => {
     selectCategory(e.target.id);
   };
   return (
-    <div className={style.category}>
+    <div className={`${style.category} `}>
       <input onClick={clickHandler} type="radio" name="category" id={id} />
-      <label htmlFor={id} className={`${style.categoryItem}`}>
-        <span className={style.value}>tasks {value}</span>
-        <h3 className={`${style.title} ${color}`}>{title}</h3>
+      <label htmlFor={id} className={`${style.label}`}>
+        <h3 className={style.title}>{title}</h3>
+        <span className={style.value}>{value} Tasks</span>
       </label>
+      <ImPower className={color}/>
     </div>
   );
 };

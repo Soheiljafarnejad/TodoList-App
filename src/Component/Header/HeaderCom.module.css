@@ -1,0 +1,14 @@
+.header {
+    position: relative;
+}
+
+.header input{
+    background-color: var(--gray);
+
+}
+
+.header svg {
+  position: absolute;
+  left: 5px;
+  top: 13px;
+}

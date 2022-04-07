@@ -7,16 +7,13 @@ import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
-    <section className="app">
-      <nav className="nav"></nav>
-      <main className="main">
-        {/* <TodoContext>
-          <HeaderCom />
-          <TodoApp />
-        </TodoContext>
-      <Toaster /> */}
-      </main>
-    </section>
+    <main className="main">
+      <TodoContext>
+        <HeaderCom />
+        <TodoApp />
+      </TodoContext>
+      <Toaster />
+    </main>
   );
 };
 

@@ -8,10 +8,10 @@ const TodoContext = ({ children }) => {
   const [status, setStatus] = useState("All");
 
   const [categoryList, setCategoryList] = useState([
-    { title: "Personal", value: 0, color: "blue", id: 1 },
-    { title: "Business", value: 0, color: "pink", id: 2 },
-    { title: "School", value: 0, color: "blue", id: 3 },
-    { title: "Work", value: 0, color: "pink", id: 4 },
+    { title: "Personal", value: 0, color: "pink", id: 1 },
+    { title: "Business", value: 0, color: "purple", id: 2 },
+    { title: "School", value: 0, color: "green", id: 3 },
+    { title: "Work", value: 0, color: "orange", id: 4 },
   ]);
   const [category, setCategory] = useState({});
   // end
