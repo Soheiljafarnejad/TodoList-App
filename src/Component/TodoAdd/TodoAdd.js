@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
-import style from "./TodoForm.module.css";
+import style from "./TodoAdd.module.css";
 import { useTodos, useTodosAction } from "../Context/TodoContext";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import TodoForm from "../../common/TodoForm/TodoForm";
 
-const TodoForm = () => {
+const TodoAdd = () => {
   const { categoryList } = useTodos();
   const { addTodosHandler } = useTodosAction();
   const [inputValue, setInputValue] = useState("");
@@ -26,23 +27,11 @@ const TodoForm = () => {
   };
 
   return (
-    <section className={`container ${style.form}`}>
-        <h2>Do you add anything?</h2>
-        <form onSubmit={submitHandler}>
-          <input
-            onChange={inputHandler}
-            type="text"
-            value={inputValue}
-            placeholder="add new task"
-            ref={inputRef}
-          />
-          <button className={`${style.btn}`} type="submit">
-            Add
-          </button>
-          <Toaster />
-        </form>
+    <section className="container">
+        <button className={style.add}>Add a new task...</button>
+      {/* <TodoForm /> */}
     </section>
   );
 };
 
-export default TodoForm;
+export default TodoAdd;

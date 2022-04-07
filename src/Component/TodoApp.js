@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import TodoForm from "./TodoForm/TodoForm";
 import TodoList from "./TodoList/TodoList";
+import TodoAdd from "./TodoAdd/TodoAdd";
 // import { useEffect } from "react";
 // import { useTodos, useTodosAction } from "./Context/TodoContext";
 import CategoryList from "./CategoryList/CategoryList";
@@ -31,16 +31,16 @@ const TodoApp = () => {
   //   setCategoryList(JSON.parse(localStorage.getItem("category")));
   //   setTodos(JSON.parse(localStorage.getItem("todos")));
   // }, []);
-  
+
   // useEffect(() => {
   //   localStorage.setItem("category", JSON.stringify(categoryList));
   //   localStorage.setItem("todos", JSON.stringify(todos));
   // }, [todos, categoryList]);
-  
+
   return (
     <>
       <CategoryList />
-      <TodoForm />
+      <TodoAdd />
       <TodoList />
     </>
   );

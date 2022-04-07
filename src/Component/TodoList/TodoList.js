@@ -1,9 +1,10 @@
+import { FaRegPlusSquare } from "react-icons/fa";
 import { useState } from "react";
 import { useTodos, useTodosAction } from "../Context/TodoContext";
 import style from "./TodoList.module.css";
 
 import Todo from "../Todo/Todo";
-import TodoEdit from "../TodoForm/TodoEdit";
+import TodoEdit from "../TodoEdit/TodoEdit";
 
 const TodoList = () => {
   const { todos } = useTodos();
@@ -20,27 +21,24 @@ const TodoList = () => {
       />
     );
   }
-  if (todos.length === 0) {
-    return (
-      <section className="container">
-        <h2>You have nothing to do !</h2>
-      </section>
-    );
-  }
   return (
     <section className={`container ${style.container}`}>
-      <h2>Today's Tasks</h2>
-      {todos.map((todo) => {
-        return (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            onComplete={() => completedHandler(todo.id)}
-            onDelete={() => deleteHandler(todo.id)}
-            onEdit={() => setSelectedEdit(todo)}
-          />
-        );
-      })}
+      <div className={style.header}>
+        <h2>My Tasks</h2>
+        <FaRegPlusSquare/>
+      </div>
+      {todos &&
+        todos.map((todo) => {
+          return (
+            <Todo
+              key={todo.id}
+              todo={todo}
+              onComplete={() => completedHandler(todo.id)}
+              onDelete={() => deleteHandler(todo.id)}
+              onEdit={() => setSelectedEdit(todo)}
+            />
+          );
+        })}
     </section>
   );
 };

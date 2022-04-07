@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import style from "./TodoForm.module.css";
+// import style from "./TodoForm.module.css";
 import toast from "react-hot-toast";
 
 const TodoEdit = ({ selectedEdit, setSelectedEdit, editTodoHandler }) => {
@@ -32,27 +32,27 @@ const TodoEdit = ({ selectedEdit, setSelectedEdit, editTodoHandler }) => {
     setSelectedEdit({ id: null });
   };
 
-  return (
-    <section className={`container ${style.form}`}>
-      <h2>Edit</h2>
-      <form onSubmit={editValueHandler}>
-        <input
-          onChange={inputHandler}
-          value={value}
-          ref={inputRef}
-          onBlur={() => inputRef.current.focus()}
-        />
-        {}
-        <button
-          type="submit"
-          id={value.trim() === selectedEdit.text ? "cancel" : "update"}
-          className={`${style.btn}`}
-        >
-          {value.trim() === selectedEdit.text ? "cancel" : "update"}
-        </button>
-      </form>
-    </section>
-  );
+  // return (
+  //   <section className={`container ${style.form}`}>
+  //     <h2>Edit</h2>
+  //     <form onSubmit={editValueHandler}>
+  //       <input
+  //         onChange={inputHandler}
+  //         value={value}
+  //         ref={inputRef}
+  //         onBlur={() => inputRef.current.focus()}
+  //       />
+  //       {}
+  //       <button
+  //         type="submit"
+  //         id={value.trim() === selectedEdit.text ? "cancel" : "update"}
+  //         className={`${style.btn}`}
+  //       >
+  //         {value.trim() === selectedEdit.text ? "cancel" : "update"}
+  //       </button>
+  //     </form>
+  //   </section>
+  // );
 };
 
 export default TodoEdit;

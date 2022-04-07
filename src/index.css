@@ -17,7 +17,7 @@
 
 :root {
   --body-dark: #0466c8;
-  --body-color: #f4f6fd;
+  --body-color: #f4f4fb;
   --color-nav: #e9ecef;
   --pink: #d103fc;
   --blue: #2684ff;
@@ -90,13 +90,13 @@ h3 {
   body,
   button,
   input {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
   h1 {
-    font-size: 4rem;
+    font-size: 3rem;
   }
   h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   h3 {
