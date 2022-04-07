@@ -10,12 +10,12 @@
 }
 
 :root {
-  --body-color: #fff;
+  --body-color: #f8f9fa;
   --purple: #8058f8;
   --pink: #ff53be;
   --orange: #fc9d5d;
   --green: #1dc342;
-  --gray: #eaeaec;
+  --gray: #e9ecef;
   --transition: all 0.2s linear;
 }
 html {

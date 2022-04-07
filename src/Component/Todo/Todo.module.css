@@ -7,15 +7,42 @@
   border-radius: 15px;
   padding: 1rem;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
 }
 
 .todo button:not(:last-child) {
   margin-right: 1rem;
 }
 
-.description {
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
   display: flex;
   align-items: center;
+}
+
+.description {
+  overflow: hidden;
+  opacity: 0;
+  height: 0px;
+  width: 60vw;
+  max-width: 1200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-left: 1rem;
+  transition: var(--transition) ;
+}
+
+.description.show {
+  display: block;
+  opacity: 1;
+  height: auto;
+  margin-top: 1.5rem;
 }
 
 .check {
@@ -29,25 +56,9 @@
   text-align: end;
 }
 
-.title {
-  display: block;
+.body h4 {
   cursor: pointer;
-  width: 60vw;
-  max-width: 1200px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin-left: 4px;
-}
-
-.category {
-  display: block;
-  color: var(--gray);
-  width: 60vw;
-  max-width: 1200px;
-  white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .btn {

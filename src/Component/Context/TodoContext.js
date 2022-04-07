@@ -65,7 +65,8 @@ export const useTodosAction = () => {
     setTodos([...todos, newTodo]);
   };
 
-  const completedHandler = (id) => {
+  const completedHandler = (e,id) => {
+    e.stopPropagation();
     const index = todos.findIndex((item) => {
       return item.id === id;
     });
@@ -76,7 +77,8 @@ export const useTodosAction = () => {
     setTodos(cloneTodo);
   };
 
-  const deleteHandler = (id) => {
+  const deleteHandler = (e,id) => {
+    e.stopPropagation();
     const deletedTodo = todos.filter((item) => item.id !== id);
     setTodos(deletedTodo);
   };

@@ -16,7 +16,7 @@ const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
   const formHandler = (e) => {
     e.preventDefault();
     if (e.nativeEvent.submitter.name === "cancel") {
-      setToggle({ type: "" });
+      setToggle(false);
       return;
     }
     if (!value.title || !value.description) {
@@ -25,7 +25,7 @@ const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
     }
     toast.success("updated");
     onSubmit();
-    setToggle({ type: "" });
+    setToggle(false);
   };
   return (
     <form className={style.form} onSubmit={formHandler}>
@@ -37,6 +37,7 @@ const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
         value={value.title}
         placeholder="Title..."
         ref={ref}
+        maxLength={20}
       />
       <textarea
         value={value.description}
