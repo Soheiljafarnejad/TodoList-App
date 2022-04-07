@@ -11,11 +11,12 @@
 
 :root {
   --body-color: #fff;
-  --purple: #8058F8;
-  --pink: #FF53BE;
-  --orange: #FC9D5D;
-  --green: #1DC342;
+  --purple: #8058f8;
+  --pink: #ff53be;
+  --orange: #fc9d5d;
+  --green: #1dc342;
   --gray: #eaeaec;
+  --transition: all 0.2s linear;
 }
 html {
   font-size: 62.5%;
@@ -29,28 +30,34 @@ body {
 }
 
 button,
-input {
+input,
+textarea {
   font-family: "Quicksand", sans-serif;
   font-size: 1.6rem;
   font-weight: 500;
   outline: none;
   border: none;
   border-radius: 5px;
+  transition: var(--transition);
 }
 
 button {
   cursor: pointer;
-  background-color: var(--gray);
-  color: white;
+  padding: 1rem 2rem;
 }
 
-input {
-  border: 1px solid var(--gray);
+input,
+textarea {
+  border: 2px solid black;
   width: 100%;
   min-width: 150px;
-  padding: 1rem 3rem;
+  padding: 1rem 1.5rem;
 }
 
+input:focus,
+textarea:focus {
+  border: 2px solid var(--purple);
+}
 
 h1 {
   font-size: 3rem;

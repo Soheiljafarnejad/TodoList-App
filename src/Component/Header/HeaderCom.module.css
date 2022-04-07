@@ -1,10 +1,15 @@
 .header {
-    position: relative;
+  position: relative;
 }
 
-.header input{
-    background-color: var(--gray);
+.header input {
+  background-color: var(--gray);
+  border: none;
+  padding-left: 3rem;
+}
 
+.header input:focus {
+  border: none;
 }
 
 .header svg {

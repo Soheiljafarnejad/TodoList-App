@@ -1,35 +1,31 @@
-import { useState, useRef } from "react";
-import style from "./TodoAdd.module.css";
-import { useTodos, useTodosAction } from "../Context/TodoContext";
-import toast from "react-hot-toast";
 import TodoForm from "../../common/TodoForm/TodoForm";
+import { useTodos, useTodosAction } from "../../Component/Context/TodoContext";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
-const TodoAdd = () => {
+const TodoAdd = ({ setToggle }) => {
   const { categoryList } = useTodos();
   const { addTodosHandler } = useTodosAction();
-  const [inputValue, setInputValue] = useState("");
 
-  const inputRef = useRef();
+  const [value, setValue] = useState({ title: "", description: "" });
 
-  const inputHandler = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const submitHandler = (e) => {
-    inputRef.current.focus();
-    e.preventDefault();
-    if (inputValue === "") {
-      toast.error("enter a new task");
+  const onSubmit = () => {
+    if (!value.title || !value.description) {
+      toast.error("Enter a new value");
       return;
     }
-    addTodosHandler(inputValue);
-    setInputValue("");
+    addTodosHandler(value);
+    setValue({ title: "", description: "" });
   };
 
   return (
     <section className="container">
-        <button className={style.add}>Add a new task...</button>
-      {/* <TodoForm /> */}
+      <TodoForm
+        setToggle={setToggle}
+        value={value}
+        setValue={setValue}
+        onSubmit={onSubmit}
+      />
     </section>
   );
 };

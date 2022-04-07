@@ -1,6 +1,5 @@
 import { useTodosAction } from "../Context/TodoContext";
 import style from "./Category.module.css";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { ImPower } from "react-icons/im";
 
 

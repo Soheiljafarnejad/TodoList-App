@@ -39,8 +39,9 @@ export default TodoContext;
 export const useTodos = () => useContext(TodoContainerContext);
 export const useTodosAction = () => {
   const { todos, categoryList, category } = useTodos();
-  const { setTodos, setStatus, setCategory, setCategoryList } =
-    useContext(TodoContainerContextDispatcher);
+  const { setTodos, setStatus, setCategory, setCategoryList } = useContext(
+    TodoContainerContextDispatcher
+  );
 
   const searchHandler = (value) => {
     const cloneTodoList = JSON.parse(localStorage.getItem("todoList")) || [];
@@ -50,12 +51,13 @@ export const useTodosAction = () => {
     // setTodoList(filtered);
   };
   const addTodosHandler = (value) => {
-    if(!category.title){
-      alert("h")
-      return
+    if (!category.title) {
+      alert("select category");
+      return;
     }
     const newTodo = {
-      title: value,
+      title: value.title,
+      description: value.description,
       category: category.title,
       color: category.color,
       id: new Date().getTime(),
