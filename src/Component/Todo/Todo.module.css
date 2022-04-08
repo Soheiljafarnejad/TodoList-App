@@ -31,14 +31,14 @@
   text-overflow: ellipsis;
   overflow: hidden;
   margin-left: 1rem;
-  transition: var(--transition) ;
+  transition: var(--transition);
 }
 
 .description.show {
   display: block;
   opacity: 1;
   height: auto;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .check {
@@ -47,12 +47,6 @@
   cursor: pointer;
   color: white;
 }
-
-/* @media screen and (max-width: 768px) {
-  .check {
-    font-size: 1.7rem;
-  }
-} */
 
 .btnContainer {
   text-align: end;
@@ -65,7 +59,7 @@
 
 .btn {
   background-color: var(--white);
-  margin: 0 0.4rem;
+  margin: 0 0.2rem;
 }
 
 .completed {

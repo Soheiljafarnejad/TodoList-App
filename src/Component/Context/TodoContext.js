@@ -5,6 +5,7 @@ const TodoContainerContext = createContext();
 const TodoContainerContextDispatcher = createContext();
 
 const TodoContext = ({ children }) => {
+  const [searchValue, setSearchValue] = useState("");
   const [todos, setTodos] = useState([]);
   const [todoList, setTodoList] = useState([]);
   const [category, setCategory] = useState({});
@@ -16,16 +17,23 @@ const TodoContext = ({ children }) => {
   ]);
 
   useEffect(() => {
-    setTodos(JSON.parse(localStorage.getItem("todos")));
+    setTodos(JSON.parse(localStorage.getItem("todos")) || []);
+    const getCategory = JSON.parse(localStorage.getItem("category"));
+    if (getCategory) setCategoryList(getCategory);
   }, []);
 
   useEffect(() => {
+    localStorage.setItem("category", JSON.stringify(categoryList));
+  }, [categoryList]);
+
+  useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-    setTodoList(todos)
+    setTodoList(todos);
   }, [todos]);
+
   return (
     <TodoContainerContext.Provider
-      value={{ todos, todoList, categoryList, category }}
+      value={{ todos, todoList, categoryList, category, searchValue }}
     >
       <TodoContainerContextDispatcher.Provider
         value={{
@@ -33,6 +41,7 @@ const TodoContext = ({ children }) => {
           setTodoList,
           setCategoryList,
           setCategory,
+          setSearchValue,
         }}
       >
         {children}
@@ -46,22 +55,23 @@ export default TodoContext;
 export const useTodos = () => useContext(TodoContainerContext);
 export const useTodosAction = () => {
   const { todos, categoryList, category } = useTodos();
-  const { setTodos, setTodoList, setCategory, setCategoryList } = useContext(
-    TodoContainerContextDispatcher
-  );
+  const {
+    setTodos,
+    setTodoList,
+    setCategory,
+    setCategoryList,
+    setSearchValue,
+  } = useContext(TodoContainerContextDispatcher);
 
-  const searchHandler = (value) => {
-    const cloneTodoList = JSON.parse(localStorage.getItem("todos"));
-    const filtered = cloneTodoList.filter((item) => {
+  const searchHandler = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    const filtered = todos.filter((item) => {
       return item.title.toLowerCase().includes(value.toLowerCase());
     });
     setTodoList(filtered);
   };
   const addTodosHandler = (value) => {
-    if (!category.title) {
-      alert("select category");
-      return;
-    }
     const newTodo = {
       title: value.title,
       description: value.description,
@@ -71,6 +81,7 @@ export const useTodosAction = () => {
       isComplete: false,
     };
     setTodos([...todos, newTodo]);
+    categoryValue(newTodo.category, "add");
   };
 
   const completedHandler = (e, id) => {
@@ -85,10 +96,11 @@ export const useTodosAction = () => {
     setTodos(cloneTodo);
   };
 
-  const deleteHandler = (e, id) => {
+  const deleteHandler = (e, todo) => {
     e.stopPropagation();
-    const deletedTodo = todos.filter((item) => item.id !== id);
+    const deletedTodo = todos.filter((item) => item.id !== todo.id);
     setTodos(deletedTodo);
+    categoryValue(todo.category, "delete");
   };
 
   const editTodoHandler = (value) => {
@@ -108,6 +120,16 @@ export const useTodosAction = () => {
     setCategory(selected[0]);
   };
 
+  const categoryValue = (title, type) => {
+    const index = categoryList.findIndex((item) => item.title === title);
+    const selectCategory = { ...categoryList[index] };
+    if (type === "add") selectCategory.value = selectCategory.value + 1;
+    if (type === "delete") selectCategory.value = selectCategory.value - 1;
+    const cloneCategory = [...categoryList];
+    cloneCategory[index] = selectCategory;
+    setCategoryList(cloneCategory);
+  };
+
   return {
     searchHandler,
     addTodosHandler,
@@ -115,8 +137,15 @@ export const useTodosAction = () => {
     deleteHandler,
     editTodoHandler,
     selectCategory,
-    setCategory,
-    setTodos,
-    setCategoryList,
   };
 };
+
+// const valueCategoryHandler = (title) => {
+//   let value = todos.filter((item) => item.category === title).length;
+//   const index = categoryList.findIndex((item) => item.title === title);
+//   const selectCategory = { ...categoryList[index] };
+//   selectCategory.value = value;
+//   const cloneCategory = [...categoryList];
+//   cloneCategory[index] = selectCategory;
+//   setCategoryList(cloneCategory);
+// };

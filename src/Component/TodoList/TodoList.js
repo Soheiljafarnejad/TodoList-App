@@ -9,18 +9,17 @@ const TodoList = () => {
   const [toggle, setToggle] = useState();
   const [editValue, setEditValue] = useState();
   const { completedHandler, deleteHandler } = useTodosAction();
-  const { todoList } = useTodos();
+  const { todoList, searchValue } = useTodos();
 
   const onEdit = (e, value) => {
     e.stopPropagation();
-    console.log(value);
     setEditValue(value);
     setToggle(true);
   };
 
   return (
     <section className={`container ${style.todoList}`}>
-      <div className={style.header}>
+      <div>
         <h2>My Tasks</h2>
         {toggle && (
           <Modal>
@@ -32,18 +31,23 @@ const TodoList = () => {
           </Modal>
         )}
       </div>
-      {todoList &&
+      {todoList.length === 0 ? (
+        <h2 className={style.empty}>
+          {searchValue ? "Nothing found !" : "The task is empty please add new task."}
+        </h2>
+      ) : (
         todoList.map((todo) => {
           return (
             <Todo
               key={todo.id}
               todo={todo}
               onComplete={(e) => completedHandler(e, todo.id)}
-              onDelete={(e) => deleteHandler(e, todo.id)}
+              onDelete={(e) => deleteHandler(e, todo)}
               onEdit={(e) => onEdit(e, todo)}
             />
           );
-        })}
+        })
+      )}
     </section>
   );
 };
