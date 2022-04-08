@@ -33,7 +33,9 @@ const TodoList = () => {
       </div>
       {todoList.length === 0 ? (
         <h2 className={style.empty}>
-          {searchValue ? "Nothing found !" : "The task is empty please add new task."}
+          {searchValue
+            ? "Nothing found !"
+            : "Please select a category from above."}
         </h2>
       ) : (
         todoList.map((todo) => {

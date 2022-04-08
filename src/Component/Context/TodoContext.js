@@ -139,13 +139,3 @@ export const useTodosAction = () => {
     selectCategory,
   };
 };
-
-// const valueCategoryHandler = (title) => {
-//   let value = todos.filter((item) => item.category === title).length;
-//   const index = categoryList.findIndex((item) => item.title === title);
-//   const selectCategory = { ...categoryList[index] };
-//   selectCategory.value = value;
-//   const cloneCategory = [...categoryList];
-//   cloneCategory[index] = selectCategory;
-//   setCategoryList(cloneCategory);
-// };

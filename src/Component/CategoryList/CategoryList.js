@@ -2,13 +2,19 @@ import { useState } from "react";
 import Modal from "../../common/Modal/Modal";
 import Category from "../Category/Category";
 import { useTodos } from "../Context/TodoContext";
+import { useTodosAction } from "../Context/TodoContext";
 import TodoAdd from "../TodoAdd/TodoAdd";
 import style from "./CategoryList.module.css";
 
 const CategoryList = () => {
   const { categoryList, searchValue } = useTodos();
-  const [toggle, setToggle] = useState();
+  const { selectCategory } = useTodosAction();
 
+  const [toggle, setToggle] = useState();
+  const clickHandler = (id) => {
+    selectCategory(id);
+    setToggle(true);
+  };
   return (
     <section className="container">
       {!searchValue && categoryList && (
@@ -29,7 +35,7 @@ const CategoryList = () => {
                   color={item.color}
                   id={item.id}
                   key={item.id}
-                  setToggle={setToggle}
+                  onClick={()=>clickHandler(item.id)}
                 />
               );
             })}

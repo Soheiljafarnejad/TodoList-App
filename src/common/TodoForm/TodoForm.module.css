@@ -8,12 +8,12 @@
   border-radius: 10px;
   margin: auto;
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
 }
 
 .form h3 {
   align-self: flex-start;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .form textarea {

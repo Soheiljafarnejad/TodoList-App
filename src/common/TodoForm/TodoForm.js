@@ -3,10 +3,11 @@ import style from "./TodoForm.module.css";
 import toast from "react-hot-toast";
 
 const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
-  const ref = useRef();
+  const titleRef = useRef();
+  const descriptionRef = useRef();
 
   useEffect(() => {
-    ref.current.focus();
+    titleRef.current.focus();
   }, []);
 
   const inputHandler = (e) => {
@@ -20,7 +21,9 @@ const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
       return;
     }
     if (!value.title || !value.description) {
-      toast.error("Please fill in all items");
+      toast.error("Please enter value");
+
+      !value.title ? titleRef.current.focus() : descriptionRef.current.focus();
       return;
     }
     toast.success("updated");
@@ -36,7 +39,7 @@ const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
         name="title"
         value={value.title}
         placeholder="Title..."
-        ref={ref}
+        ref={titleRef}
         maxLength={20}
       />
       <textarea
@@ -44,6 +47,7 @@ const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
         onChange={inputHandler}
         name="description"
         placeholder="Description..."
+        ref={descriptionRef}
       />
       <div className={style.btn}>
         <button className={style.cancel} name="cancel" type="submit">
