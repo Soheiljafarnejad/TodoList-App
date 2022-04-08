@@ -9,7 +9,7 @@ const TodoList = () => {
   const [toggle, setToggle] = useState();
   const [editValue, setEditValue] = useState();
   const { completedHandler, deleteHandler } = useTodosAction();
-  const { todos } = useTodos();
+  const { todoList } = useTodos();
 
   const onEdit = (e, value) => {
     e.stopPropagation();
@@ -32,8 +32,8 @@ const TodoList = () => {
           </Modal>
         )}
       </div>
-      {todos &&
-        todos.map((todo) => {
+      {todoList &&
+        todoList.map((todo) => {
           return (
             <Todo
               key={todo.id}

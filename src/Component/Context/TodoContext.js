@@ -1,28 +1,36 @@
 import { createContext, useContext, useState } from "react";
+import { useEffect } from "react";
 
 const TodoContainerContext = createContext();
 const TodoContainerContextDispatcher = createContext();
 
 const TodoContext = ({ children }) => {
   const [todos, setTodos] = useState([]);
-  const [status, setStatus] = useState("All");
-
+  const [todoList, setTodoList] = useState([]);
+  const [category, setCategory] = useState({});
   const [categoryList, setCategoryList] = useState([
     { title: "Personal", value: 0, color: "pink", id: 1 },
     { title: "Business", value: 0, color: "purple", id: 2 },
     { title: "School", value: 0, color: "green", id: 3 },
     { title: "Work", value: 0, color: "orange", id: 4 },
   ]);
-  const [category, setCategory] = useState({});
 
+  useEffect(() => {
+    setTodos(JSON.parse(localStorage.getItem("todos")));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+    setTodoList(todos)
+  }, [todos]);
   return (
     <TodoContainerContext.Provider
-      value={{ todos, status, categoryList, category }}
+      value={{ todos, todoList, categoryList, category }}
     >
       <TodoContainerContextDispatcher.Provider
         value={{
           setTodos,
-          setStatus,
+          setTodoList,
           setCategoryList,
           setCategory,
         }}
@@ -38,16 +46,16 @@ export default TodoContext;
 export const useTodos = () => useContext(TodoContainerContext);
 export const useTodosAction = () => {
   const { todos, categoryList, category } = useTodos();
-  const { setTodos, setStatus, setCategory, setCategoryList } = useContext(
+  const { setTodos, setTodoList, setCategory, setCategoryList } = useContext(
     TodoContainerContextDispatcher
   );
 
   const searchHandler = (value) => {
-    const cloneTodoList = JSON.parse(localStorage.getItem("todoList")) || [];
+    const cloneTodoList = JSON.parse(localStorage.getItem("todos"));
     const filtered = cloneTodoList.filter((item) => {
-      return item.text.toLowerCase().includes(value.toLowerCase());
+      return item.title.toLowerCase().includes(value.toLowerCase());
     });
-    setTodos(filtered);
+    setTodoList(filtered);
   };
   const addTodosHandler = (value) => {
     if (!category.title) {
@@ -65,7 +73,7 @@ export const useTodosAction = () => {
     setTodos([...todos, newTodo]);
   };
 
-  const completedHandler = (e,id) => {
+  const completedHandler = (e, id) => {
     e.stopPropagation();
     const index = todos.findIndex((item) => {
       return item.id === id;
@@ -77,7 +85,7 @@ export const useTodosAction = () => {
     setTodos(cloneTodo);
   };
 
-  const deleteHandler = (e,id) => {
+  const deleteHandler = (e, id) => {
     e.stopPropagation();
     const deletedTodo = todos.filter((item) => item.id !== id);
     setTodos(deletedTodo);
@@ -107,7 +115,6 @@ export const useTodosAction = () => {
     deleteHandler,
     editTodoHandler,
     selectCategory,
-    setStatus,
     setCategory,
     setTodos,
     setCategoryList,

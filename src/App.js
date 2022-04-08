@@ -1,16 +1,17 @@
-import TodoApp from "./Component/TodoApp";
-import "./App.css";
 import HeaderCom from "./Component/Header/HeaderCom";
+import TodoList from "./Component/TodoList/TodoList";
+import CategoryList from "./Component/CategoryList/CategoryList";
 import TodoContext from "./Component/Context/TodoContext";
-import { useState } from "react";
 import { Toaster } from "react-hot-toast";
+import "./App.css";
 
 const App = () => {
   return (
     <main className="main">
       <TodoContext>
         <HeaderCom />
-        <TodoApp />
+        <CategoryList />
+        <TodoList />
       </TodoContext>
       <Toaster />
     </main>
