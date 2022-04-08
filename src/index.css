@@ -10,12 +10,12 @@
 }
 
 :root {
-  --body-color: #f8f9fa;
+  --body-color: #F8FAFD;
   --purple: #8058f8;
   --pink: #ff53be;
   --orange: #fc9d5d;
   --green: #1dc342;
-  --gray: #e9ecef;
+  --gray: #EDF2F7;
   --transition: all 0.2s linear;
 }
 html {
@@ -24,20 +24,30 @@ html {
 
 body {
   font-family: "Quicksand", sans-serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 500;
   background-color: var(--body-color);
+}
+
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 3rem;
 }
 
 button,
 input,
 textarea {
   font-family: "Quicksand", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: 2rem;
   outline: none;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   transition: var(--transition);
 }
 
@@ -59,35 +69,28 @@ textarea:focus {
   border: 2px solid var(--purple);
 }
 
-h1 {
-  font-size: 3rem;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-size: 2.2rem;
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 576px) {
   body,
   button,
-  input {
+  input,
+  textarea {
+    font-family: "Quicksand", sans-serif;
     font-size: 1.8rem;
+    font-weight: 500;
+    background-color: var(--body-color);
   }
+
   h1 {
     font-size: 3rem;
+    font-weight: 700;
   }
+
   h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 700;
   }
 
   h3 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }

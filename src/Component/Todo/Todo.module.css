@@ -5,13 +5,9 @@
   margin: 1.5rem 0;
   background-color: var(--white);
   border-radius: 15px;
-  padding: 1rem;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
+  padding: 1.3rem 1rem;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.07);
   cursor: pointer;
-}
-
-.todo button:not(:last-child) {
-  margin-right: 1rem;
 }
 
 .body {
@@ -47,10 +43,16 @@
 
 .check {
   border-radius: 50%;
-  font-size: 1.7rem;
+  font-size: 2rem;
   cursor: pointer;
   color: white;
 }
+
+/* @media screen and (max-width: 768px) {
+  .check {
+    font-size: 1.7rem;
+  }
+} */
 
 .btnContainer {
   text-align: end;
@@ -69,10 +71,4 @@
 .completed {
   text-decoration: line-through;
   opacity: 0.4;
-}
-
-@media screen and (min-width: 768px) {
-  .check {
-    font-size: 2rem;
-  }
 }

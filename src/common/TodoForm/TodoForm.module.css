@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   background-color: white;
-  padding: 3rem 2.5rem;
+  padding: 1.5rem 2rem;
   border-radius: 10px;
   margin: auto;
   width: 100%;
@@ -24,6 +24,7 @@
 
 .btn {
   align-self: flex-end;
+  margin-top: 1rem;
 }
 
 .save {

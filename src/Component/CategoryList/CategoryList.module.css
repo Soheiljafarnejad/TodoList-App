@@ -1,8 +1,15 @@
 .categoryList {
-  margin-top: 3rem;
-  width: 100%;
-  display: flex;
+  margin-top: 3.5rem;
+  display: grid;
+  gap: 3.5rem 2rem;
   align-items: center;
-  justify-content: space-between;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
+@media screen and (max-width: 430px) {
+  .categoryList {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 3.5rem 1.5rem;
+  }
+}

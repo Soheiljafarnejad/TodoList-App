@@ -1,4 +1,3 @@
-import { FaRegPlusSquare } from "react-icons/fa";
 import { useState } from "react";
 import { useTodos, useTodosAction } from "../Context/TodoContext";
 import Modal from "../../common/Modal/Modal";
@@ -18,7 +17,7 @@ const TodoList = () => {
     setEditValue(value);
     setToggle(true);
   };
-  
+
   return (
     <section className={`container ${style.todoList}`}>
       <div className={style.header}>

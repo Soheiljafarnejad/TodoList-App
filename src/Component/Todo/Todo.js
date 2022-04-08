@@ -27,19 +27,8 @@ const Todo = ({ todo, onComplete, onDelete, onEdit }) => {
         </div>
       </div>
       <div className={style.btnContainer}>
-        <BiEdit
-          className={`icons ${style.btn}`}
-          data-tip={"Edit"}
-          data-class="tooltip"
-          onClick={onEdit}
-        />
-
-        <BiTrashAlt
-          className={`icons ${style.btn}`}
-          data-tip={"Delete"}
-          data-class="tooltip"
-          onClick={onDelete}
-        />
+        <BiEdit className={`icons ${style.btn}`} onClick={onEdit} />
+        <BiTrashAlt className={`icons ${style.btn}`} onClick={onDelete} />
       </div>
     </div>
   );

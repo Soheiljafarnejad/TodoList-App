@@ -1,5 +1,5 @@
 .container {
-  width: 95%;
+  width: 90%;
   max-width: 1200px;
   margin: 2rem auto;
 }
@@ -77,12 +77,6 @@
 
 .selected-pink {
   border: 2px solid var(--pink);
-}
-
-.tooltip {
-  font-family: "Quicksand", sans-serif !important;
-  font-size: 1.7rem !important;
-  padding: 0.5rem 1rem !important;
 }
 
 .icons {
