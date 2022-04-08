@@ -1,5 +1,5 @@
 .categoryList {
-  margin-top: 3rem;
+  margin-top: 4rem;
   display: grid;
   gap: 3rem 3rem;
   align-items: center;
@@ -7,9 +7,15 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
+@media screen and (max-width: 644px) {
+  .categoryList {
+    margin-top: 2.5rem;
+  }
+}
+
 @media screen and (max-width: 433px) {
   .categoryList {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 3rem 1.5rem;
+    gap: 3rem 2rem;
   }
 }

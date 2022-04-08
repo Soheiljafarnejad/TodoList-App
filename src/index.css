@@ -39,6 +39,9 @@ h2 {
 h3 {
   font-size: 2.6rem;
 }
+h4{
+  font-size: 2.2rem;
+}
 
 button,
 input,
@@ -94,4 +97,8 @@ textarea:focus {
   h3 {
     font-size: 2.5rem;
   }
+  h4{
+    font-size: 2.1rem;
+  }
+  
 }

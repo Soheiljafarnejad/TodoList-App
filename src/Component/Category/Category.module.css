@@ -1,7 +1,7 @@
 .category {
   width: 100%;
   cursor: pointer;
-  border-radius: 45px;
+  border-radius: 30px;
   height: 170px;
   position: relative;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
@@ -45,7 +45,7 @@ input[type="radio"] {
 @media screen and (max-width: 644px) {
   .category {
     height: 130px;
-    max-width: 220px;
+    max-width: 240px;
   }
   .title {
     font-size: 2rem;

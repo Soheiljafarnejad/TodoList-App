@@ -42,7 +42,7 @@
 
 .check {
   border-radius: 50%;
-  font-size: 2rem;
+  font-size: 2.1rem;
   cursor: pointer;
   color: white;
 }
@@ -56,9 +56,8 @@
   margin-left: 4px;
 }
 
-.btn {
-  background-color: var(--white);
-  margin: 0 0.2rem;
+.btn:last-child {
+  margin-left: 1rem;
 }
 
 .completed {
