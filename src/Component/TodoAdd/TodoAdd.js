@@ -1,14 +1,14 @@
 import TodoForm from "../../common/TodoForm/TodoForm";
-import { useTodosAction } from "../../Component/Context/TodoContext";
+import { addTodo, useTodosAction } from "../../Component/Context/TodoContext";
 import { useState } from "react";
 
 const TodoAdd = ({ setToggle }) => {
-  const { addTodosHandler } = useTodosAction();
+  const dispatch = useTodosAction();
 
   const [value, setValue] = useState({ title: "", description: "" });
 
   const onSubmit = () => {
-    addTodosHandler(value);
+    dispatch(addTodo(value));
     setValue({ title: "", description: "" });
   };
 

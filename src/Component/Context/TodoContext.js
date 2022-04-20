@@ -1,49 +1,107 @@
-import { createContext, useContext, useState } from "react";
-import { useEffect } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+
+const ADD_TODO = "ADD_TODO";
+const DELETE_TODO = "DELETE_TODO";
+const COMPLETED_TODO = "COMPLETED_TODO";
+const EDIT_TODO = "EDIT_TODO";
+const CATEGORY = "CATEGORY";
+const SEARCH = "SEARCH";
+
+const UPDATE_TODOLIST = "UPDATE_TODOLIST";
+const SAVE_LOCAL = "SAVE_LOCAL";
+
+export const addTodo = (value) => {
+  return { type: ADD_TODO, payload: value };
+};
+
+export const deleteTodo = (event, value) => {
+  return { type: DELETE_TODO, payload: value, event };
+};
+
+export const completedTodo = (event, value) => {
+  return { type: COMPLETED_TODO, payload: value, event };
+};
+
+export const editTodo = (value) => {
+  return { type: EDIT_TODO, payload: value };
+};
+
+export const selectCategory = (value) => {
+  return { type: CATEGORY, payload: value };
+};
+
+export const updateTodoList = (value) => {
+  return { type: UPDATE_TODOLIST, payload: value };
+};
+
+export const saveLocal = (todos, category) => {
+  return { type: SAVE_LOCAL, todos, category };
+};
+
+export const searchTodo = (value) => {
+  return { type: SEARCH, payload: value };
+};
 
 const TodoContainerContext = createContext();
 const TodoContainerContextDispatcher = createContext();
 
 const TodoContext = ({ children }) => {
-  const [searchValue, setSearchValue] = useState("");
-  const [todos, setTodos] = useState([]);
-  const [todoList, setTodoList] = useState([]);
-  const [category, setCategory] = useState({});
-  const [categoryList, setCategoryList] = useState([
-    { title: "Personal", value: 0, color: "pink", id: 1 },
-    { title: "Business", value: 0, color: "purple", id: 2 },
-    { title: "School", value: 0, color: "green", id: 3 },
-    { title: "Work", value: 0, color: "orange", id: 4 },
-  ]);
+  const initState = {
+    todos: [],
+    todoList: [],
+    categoryList: [
+      { title: "Personal", value: 0, color: "pink", id: 1 },
+      { title: "Business", value: 0, color: "purple", id: 2 },
+      { title: "School", value: 0, color: "green", id: 3 },
+      { title: "Work", value: 0, color: "orange", id: 4 },
+    ],
+    category: {},
+    searchValue: "",
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case ADD_TODO:
+        return addTodosHandler(state, action);
+      case DELETE_TODO:
+        return deleteHandler(state, action);
+      case COMPLETED_TODO:
+        return completedHandler(state, action);
+      case EDIT_TODO:
+        return editTodoHandler(state, action);
+      case CATEGORY:
+        return selectCategoryHandler(state, action);
+      case SEARCH:
+        return searchHandler(state, action);
+      case UPDATE_TODOLIST:
+        return { ...state, todoList: action.payload };
+      case SAVE_LOCAL:
+        return { ...state, todos: action.todos, categoryList: action.category };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initState);
 
   useEffect(() => {
-    setTodos(JSON.parse(localStorage.getItem("todos")) || []);
-    const getCategory = JSON.parse(localStorage.getItem("category"));
-    if (getCategory) setCategoryList(getCategory);
+    const todos = JSON.parse(localStorage.getItem("todos"));
+    const category = JSON.parse(localStorage.getItem("category"));
+    if (todos && category) dispatch(saveLocal(todos, category));
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("category", JSON.stringify(categoryList));
-  }, [categoryList]);
+    localStorage.setItem("todos", JSON.stringify(state.todos));
+    dispatch(updateTodoList(state.todos));
+  }, [dispatch, state.todos]);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-    setTodoList(todos);
-  }, [todos]);
+    localStorage.setItem("category", JSON.stringify(state.categoryList));
+  }, [dispatch, state.categoryList]);
 
   return (
-    <TodoContainerContext.Provider
-      value={{ todos, todoList, categoryList, category, searchValue }}
-    >
-      <TodoContainerContextDispatcher.Provider
-        value={{
-          setTodos,
-          setTodoList,
-          setCategoryList,
-          setCategory,
-          setSearchValue,
-        }}
-      >
+    <TodoContainerContext.Provider value={state}>
+      <TodoContainerContextDispatcher.Provider value={dispatch}>
         {children}
       </TodoContainerContextDispatcher.Provider>
     </TodoContainerContext.Provider>
@@ -53,89 +111,84 @@ const TodoContext = ({ children }) => {
 export default TodoContext;
 
 export const useTodos = () => useContext(TodoContainerContext);
-export const useTodosAction = () => {
-  const { todos, categoryList, category } = useTodos();
-  const {
-    setTodos,
-    setTodoList,
-    setCategory,
-    setCategoryList,
-    setSearchValue,
-  } = useContext(TodoContainerContextDispatcher);
+export const useTodosAction = () => useContext(TodoContainerContextDispatcher);
 
-  const searchHandler = (e) => {
-    const value = e.target.value;
-    setSearchValue(value);
-    const filtered = todos.filter((item) => {
-      return item.title.toLowerCase().includes(value.toLowerCase());
-    });
-    setTodoList(filtered);
-  };
-  const addTodosHandler = (value) => {
-    const newTodo = {
-      title: value.title,
-      description: value.description,
-      category: category.title,
-      color: category.color,
-      id: new Date().getTime(),
-      isComplete: false,
-    };
-    setTodos([...todos, newTodo]);
-    categoryValue(newTodo.category, "add");
-  };
+const searchHandler = (state, action) => {
+  const filtered = state.todos.filter((item) => {
+    return item.title.toLowerCase().includes(action.payload.toLowerCase());
+  });
+  return { ...state, searchValue: action.payload, todoList: filtered };
+};
 
-  const completedHandler = (e, id) => {
-    e.stopPropagation();
-    const index = todos.findIndex((item) => {
-      return item.id === id;
-    });
-    const selectTodo = { ...todos[index] };
-    selectTodo.isComplete = !selectTodo.isComplete;
-    const cloneTodo = [...todos];
-    cloneTodo[index] = selectTodo;
-    setTodos(cloneTodo);
+const addTodosHandler = (state, action) => {
+  const updateCategory = categoryValueHandler(
+    state,
+    ADD_TODO,
+    state.category.title
+  );
+  const newTodo = {
+    title: action.payload.title,
+    description: action.payload.description,
+    category: state.category.title,
+    color: state.category.color,
+    id: new Date().getTime(),
+    isComplete: false,
   };
-
-  const deleteHandler = (e, todo) => {
-    e.stopPropagation();
-    const deletedTodo = todos.filter((item) => item.id !== todo.id);
-    setTodos(deletedTodo);
-    categoryValue(todo.category, "delete");
-  };
-
-  const editTodoHandler = (value) => {
-    const index = todos.findIndex((item) => item.id === value.id);
-    const selectTodo = { ...todos[index] };
-    selectTodo.title = value.title;
-    selectTodo.description = value.description;
-    const cloneTodo = [...todos];
-    cloneTodo[index] = selectTodo;
-    setTodos(cloneTodo);
-  };
-
-  const selectCategory = (id) => {
-    const selected = categoryList.filter(
-      (item) => parseInt(item.id) === parseInt(id)
-    );
-    setCategory(selected[0]);
-  };
-
-  const categoryValue = (title, type) => {
-    const index = categoryList.findIndex((item) => item.title === title);
-    const selectCategory = { ...categoryList[index] };
-    if (type === "add") selectCategory.value = selectCategory.value + 1;
-    if (type === "delete") selectCategory.value = selectCategory.value - 1;
-    const cloneCategory = [...categoryList];
-    cloneCategory[index] = selectCategory;
-    setCategoryList(cloneCategory);
-  };
-
   return {
-    searchHandler,
-    addTodosHandler,
-    completedHandler,
-    deleteHandler,
-    editTodoHandler,
-    selectCategory,
+    ...state,
+    todos: [...state.todos, newTodo],
+    categoryList: updateCategory,
   };
+};
+
+const completedHandler = (state, action) => {
+  action.event.stopPropagation();
+  const index = state.todos.findIndex((item) => {
+    return item.id === action.payload.id;
+  });
+  const selectTodo = { ...state.todos[index] };
+  selectTodo.isComplete = !selectTodo.isComplete;
+  const cloneTodo = [...state.todos];
+  cloneTodo[index] = selectTodo;
+  return { ...state, todos: cloneTodo };
+};
+
+const deleteHandler = (state, action) => {
+  const updateCategory = categoryValueHandler(
+    state,
+    DELETE_TODO,
+    action.payload.category
+  );
+  action.event.stopPropagation();
+  const deletedTodo = state.todos.filter(
+    (item) => item.id !== action.payload.id
+  );
+  return { ...state, todos: deletedTodo, categoryList: updateCategory };
+};
+
+const editTodoHandler = (state, action) => {
+  const index = state.todos.findIndex((item) => item.id === action.payload.id);
+  const selectTodo = { ...state.todos[index] };
+  selectTodo.title = action.payload.title;
+  selectTodo.description = action.payload.description;
+  const cloneTodo = [...state.todos];
+  cloneTodo[index] = selectTodo;
+  return { ...state, todos: cloneTodo };
+};
+
+const selectCategoryHandler = (state, action) => {
+  const selected = state.categoryList.find(
+    (item) => parseInt(item.id) === parseInt(action.payload)
+  );
+  return { ...state, category: selected };
+};
+
+const categoryValueHandler = (state, type, category) => {
+  const index = state.categoryList.findIndex((item) => item.title === category);
+  const selectCategory = { ...state.categoryList[index] };
+  if (type === ADD_TODO) selectCategory.value = selectCategory.value + 1;
+  if (type === DELETE_TODO) selectCategory.value = selectCategory.value - 1;
+  const cloneCategory = [...state.categoryList];
+  cloneCategory[index] = selectCategory;
+  return cloneCategory;
 };

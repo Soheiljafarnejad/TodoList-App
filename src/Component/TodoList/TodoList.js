@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { useTodos, useTodosAction } from "../Context/TodoContext";
+import {
+  completedTodo,
+  deleteTodo,
+  useTodos,
+  useTodosAction,
+} from "../Context/TodoContext";
 import Modal from "../../common/Modal/Modal";
 import style from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
@@ -8,7 +13,7 @@ import TodoEdit from "../TodoEdit/TodoEdit";
 const TodoList = () => {
   const [toggle, setToggle] = useState();
   const [editValue, setEditValue] = useState();
-  const { completedHandler, deleteHandler } = useTodosAction();
+  const dispatch = useTodosAction();
   const { todoList, searchValue } = useTodos();
 
   const onEdit = (e, value) => {
@@ -16,7 +21,6 @@ const TodoList = () => {
     setEditValue(value);
     setToggle(true);
   };
-
   return (
     <section className={`container ${style.todoList}`}>
       <div>
@@ -43,8 +47,8 @@ const TodoList = () => {
             <Todo
               key={todo.id}
               todo={todo}
-              onComplete={(e) => completedHandler(e, todo.id)}
-              onDelete={(e) => deleteHandler(e, todo)}
+              onComplete={(e) => dispatch(completedTodo(e, todo))}
+              onDelete={(e) => dispatch(deleteTodo(e, todo))}
               onEdit={(e) => onEdit(e, todo)}
             />
           );

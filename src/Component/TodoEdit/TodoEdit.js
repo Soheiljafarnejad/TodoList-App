@@ -1,10 +1,10 @@
 import TodoForm from "../../common/TodoForm/TodoForm";
-import { useTodosAction } from "../Context/TodoContext";
+import { editTodo, useTodosAction } from "../Context/TodoContext";
 
 const TodoEdit = ({ setToggle, value, setValue }) => {
-  const { editTodoHandler } = useTodosAction();
+  const dispatch = useTodosAction();
   const onSubmit = () => {
-    editTodoHandler(value);
+    dispatch(editTodo(value));
   };
 
   return (
