@@ -40,7 +40,6 @@ const TodoForm = ({ edit, setToggle, value, setValue, onSubmit }) => {
         value={value.title}
         placeholder="Title..."
         ref={titleRef}
-        maxLength={20}
       />
       <textarea
         value={value.description}

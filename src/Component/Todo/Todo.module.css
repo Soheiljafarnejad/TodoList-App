@@ -1,44 +1,55 @@
 .todo {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   margin: 1.5rem 0;
-    border-radius: 15px;
-  padding: 1.5rem 1rem;
+  border-radius: 15px;
+  padding: 0 1rem;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.07);
-  cursor: pointer;
+  background-color: white;
 }
 
 .body {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 
-.title {
+.titleBox {
   display: flex;
   align-items: center;
   user-select: none;
+  padding: 1.5rem 0;
+  cursor: pointer;
+}
+
+.title {
+  width: 300px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .description {
-  overflow: hidden;
   opacity: 0;
-  height: 0px;
-  width: 60vw;
-  max-width: 1200px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  height: 0;
+  visibility: hidden;
   margin-left: 1rem;
   transition: var(--transition);
+  word-wrap: break-word;
+  user-select: none;
+}
+
+.description p{
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .description.show {
-  display: block;
   opacity: 1;
   height: auto;
-  margin-top: 1rem;
+  visibility: visible;
+  padding-bottom: 1.5rem;
+  user-select: none;
 }
 
 .check {
@@ -48,8 +59,15 @@
   color: white;
 }
 
+.completeBox {
+  flex-grow: 1;
+  padding: 2.7rem 0;
+  cursor: pointer;
+}
+
 .btnContainer {
   text-align: end;
+  padding: 1.5rem 0;
 }
 
 .body h4 {
@@ -64,4 +82,10 @@
 .completed {
   text-decoration: line-through;
   opacity: 0.4;
+}
+
+@media screen and (max-width: 576px) {
+  .title {
+    width: 100px;
+  }
 }
