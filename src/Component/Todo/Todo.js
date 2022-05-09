@@ -6,16 +6,22 @@ import { useState } from "react";
 
 const Todo = ({ todo, onComplete, onDelete, onEdit }) => {
   const [show, setShow] = useState(false);
+  const clickHandler = (e) => {
+    onComplete(e);
+    setShow(false);
+  };
   return (
     <div className={style.todo}>
       <div className={style.body}>
-        <div className={style.titleBox} onClick={onComplete}>
+        <div className={style.titleBox} onClick={clickHandler}>
           <TiTick
             className={`${style.check} ${`check-${todo.color}`} ${
               todo.isComplete && `${todo.color}-completed`
             }`}
           />
-          <h4 className={`${style.title} ${todo.isComplete && style.completed}`}>
+          <h4
+            className={`${style.title} ${todo.isComplete && style.completed}`}
+          >
             {todo.title}
           </h4>
         </div>
