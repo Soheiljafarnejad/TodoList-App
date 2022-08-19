@@ -18,8 +18,11 @@
   --gray: #edf2f7;
   --transition: all 0.15s linear;
 }
+
 html {
   font-size: 62.5%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -30,24 +33,24 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.7rem;
 }
 h2 {
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 h3 {
-  font-size: 2.6rem;
+  font-size: 2.3rem;
 }
-h4{
-  font-size: 2.2rem;
+h4 {
+  font-size: 2rem;
 }
 
 button,
 input,
 textarea {
   font-family: "Quicksand", sans-serif;
-  font-size: 2rem;
+  font-size: 1.7rem;
   outline: none;
   border: none;
   border-radius: 8px;
@@ -56,7 +59,7 @@ textarea {
 
 button {
   cursor: pointer;
-  padding: 1rem 2rem;
+  padding: 1rem 1.7rem;
 }
 
 input,
@@ -79,7 +82,7 @@ textarea:focus {
   input,
   textarea {
     font-family: "Quicksand", sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: 500;
     background-color: var(--body-color);
   }
@@ -90,15 +93,14 @@ textarea:focus {
   }
 
   h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 700;
   }
 
   h3 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
-  h4{
-    font-size: 2.1rem;
+  h4 {
+    font-size: 2rem;
   }
-  
 }
